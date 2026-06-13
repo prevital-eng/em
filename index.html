@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>פשוט וקל - מדריך כיס דיגיטלי</title>
+    <!-- Tailwind CSS for modern responsive styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- React and ReactDOM -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+    <!-- Babel for JSX compilation in the browser -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.5/babel.min.js"></script>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Assistant', sans-serif;
+            background-color: #F4F7F6;
+            -webkit-tap-highlight-color: transparent;
+        }
+        /* Smooth transition for checked steps */
+        .step-transition {
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-[#F0F4F4] text-[#1E293B]">
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useMemo } = React;
+
+        // Structured Guide Data directly parsed from your files
+        const guidesData = [
+            {
+                id: "wa-1",
+                category: "whatsapp",
+                title: "איך מתקינים ומגדירים את וואטסאפ?",
+                icon: "🟢",
+                steps: [
+                    "פתחו את חנות האפליקציות במכשיר שלכם (Google Play באנדרואיד או App Store באייפון).",
+                    "חפשו בשורה העליונה את המילה: WhatsApp.",
+                    "לחצו על כפתור התקן והמתינו לסיום ההורדה וההתקנה.",
+                    "פתחו את האפליקציה דרך האייקון החדש שנוסף למסך והקלידו את מספר הטלפון הנייד שלכם.",
+                    "הזינו את קוד האימות שקיבלתם בהודעת SMS.",
+                    "בחרו שם מתאים והוסיפו תמונת פרופיל שלכם."
+                ]
+            },
+            {
+                id: "wa-2",
+                category: "whatsapp",
+                title: "איך שולחים הודעה או מבצעים שיחה?",
+                icon: "📞",
+                steps: [
+                    "היכנסו לאפליקציית אנשי הקשר הרגילה של הטלפון שלכם.",
+                    "חפשו ובחרו את האדם אליו תרצו להתקשר או לכתוב.",
+                    "לחצו על כפתור המידע (סמל האות i) שליד שמו.",
+                    "בחרו בפעולה הרצויה מתוך הרשימה: הודעה, שיחה קולית או שיחת וידאו."
+                ]
+            },
+            {
+                id: "wa-3",
+                category: "whatsapp",
+                title: "איך מקליטים ושולחים הודעה קולית?",
+                icon: "🎙️",
+                steps: [
+                    "להקלטה קצרה: לחצו לחיצה ארוכה על סמל המיקרופון > דברו אל המכשיר > שחררו את האצבע וההודעה תישלח מעצמה.",
+                    "להקלטה ארוכה (בלי להחזיק): לחצו על המיקרופון וגררו את האצבע כלפי מעלה לקליק של הנעילה.",
+                    "כשסיימתם לדבר, לחצו על חץ השליחה הירוק."
+                ]
+            },
+            {
+                id: "wa-4",
+                category: "whatsapp",
+                title: "איך שולחים תמונות מהגלריה?",
+                icon: "🖼️",
+                steps: [
+                    "היכנסו לאפליקציית גלריית התמונות שלכם במכשיר.",
+                    "סמנו בנגיעה קלה את התמונה או התמונות שתרצו לשלוח לחבר.",
+                    "לחצו על סמל השיתוף (נראה כמו חץ קטן או שלוש נקודות מחוברות בקו).",
+                    "בחרו בסמל של וואטסאפ מתוך האפליקציות, סמנו את איש הקשר הרצוי ואשרו את השליחה."
+                ]
+            },
+            {
+                id: "wa-5",
+                category: "whatsapp",
+                title: "איך משתפים מיקום?",
+                icon: "📍",
+                steps: [
+                    "ודאו שרכיב המיקום (GPS) מופעל במכשיר שלכם (בווילון ההגדרות העליון).",
+                    "היכנסו לשיחה (צ'אט) של האדם הרצוי בתוך וואטסאפ.",
+                    "לחצו על סמל הסיכה המשרדית שליד תיבת כתיבת ההודעה.",
+                    "בחרו באייקון המיקום ולחצו על שיתוף מיקום."
+                ]
+            },
+            {
+                id: "wa-6",
+                category: "whatsapp",
+                title: "איך מוחקים הודעה שנשלחה בטעות?",
+                icon: "🗑️",
+                steps: [
+                    "לחצו לחיצה ארוכה על ההודעה הספציפית שברצונכם למחוק.",
+                    "בתפריט העליון שייפתח על המסך, לחצו על סמל פח האשפה.",
+                    "בחרו באפשרות: מחק אצל כולם (שימו לב: הפעולה זמינה לזמן מוגבל בלבד לאחר השליחה)."
+                ]
+            },
+            {
+                id: "wa-7",
+                category: "whatsapp",
+                title: "איך עורכים הודעה שכבר נשלחה? (עד 15 דקות)",
+                icon: "✏️",
+                steps: [
+                    "לחצו לחיצה ארוכה על ההודעה ששלחתם וברצונכם לתקן.",
+                    "לחצו על שלוש הנקודות (או הפסים) בסרגל העליון של המסך.",
+                    "בחרו באפשרות עריכה.",
+                    "תקנו את הטקסט בתוך תיבת הכתיבה ולחצו על סימן ה-V הירוק לאישור השינוי."
+                ]
+            },
+            {
+                id: "wa-8",
+                category: "whatsapp",
+                title: "איך מוסיפים קיצור דרך לצ'אט ספציפי במסך הבית?",
+                icon: "📌",
+                steps: [
+                    "במסך הראשי של וואטסאפ, לחצו לחיצה ארוכה על השיחה של האדם המבוקש.",
+                    "לחצו על שלוש הנקודות שמופיעות בתפריט העליון.",
+                    "בחרו באפשרות הוסף קיצור דרך לצ'אט.",
+                    "אשרו על ידי לחיצה על הוסף באופן אוטומטי."
+                ]
+            },
+            {
+                id: "wa-9",
+                category: "whatsapp",
+                title: "איך יוצרים רשימת תפוצה? (לשליחה להרבה אנשים בנפרד)",
+                icon: "👥",
+                steps: [
+                    "במסך הראשי של וואטסאפ, לחצו על שלוש הנקודות בפינת המסך העליונה.",
+                    "בחרו באפשרות רשימת תפוצה חדשה.",
+                    "צרפו לפחות שני אנשים מתוך רשימת אנשי הקשר שלכם.",
+                    "לחצו על החץ הירוק לסיום – כעת נוצר לכם ערוץ לשליחת הודעה מרוכזת שמגיעה לכל אחד מהם בנפרד."
+                ]
+            },
+            {
+                id: "and-1",
+                category: "android",
+                title: "איך מורידים ומתקינים אפליקציות?",
+                icon: "🛍️",
+                steps: [
+                    "פתחו את חנות Google Play במכשירכם (האייקון של המשולש הצבעוני).",
+                    "הקלידו את שם האפליקציה בתיבת החיפוש העליונה.",
+                    "בדקו את התוצאות בעיון (מומלץ לדלג על שורות ראשונות שכתוב עליהן 'ממומן').",
+                    "לחצו על כפתור התקן הירוק והמתינו לסיום ההורדה וההתקנה האוטומטית."
+                ]
+            },
+            {
+                id: "and-2",
+                category: "android",
+                title: "איך מתחברים לרשת אינטרנט אלחוטית (Wi-Fi)?",
+                icon: "📶",
+                steps: [
+                    "פתחו את אפליקציית ההגדרות של הטלפון (סמל גלגל השיניים).",
+                    "לחצו על תפריט חיבורים (או Wi-Fi).",
+                    "ודאו שמתג ה-Wi-Fi מופעל (צבוע בצבע בולט כגון כחול או ירוק).",
+                    "בחרו את שם הרשת הביתית שלכם מתוך הרשימה.",
+                    "הקלידו את סיסמת הרשת במדויק ולחצו התחבר."
+                ]
+            },
+            {
+                id: "and-3",
+                category: "android",
+                title: "איך שומרים ועורכים אנשי קשר?",
+                icon: "👤",
+                steps: [
+                    "לשמירה חדשה: פתחו את אפליקציית אנשי קשר > לחצו על כפתור הפלוס (+) > הקלידו שם ומספר טלפון > לחצו שמור.",
+                    "לעריכת איש קשר קיים: היכנסו לאיש הקשר שברצונכם לשנות.",
+                    "לחצו על סמל העיפרון (או כפתור עריכה) המופיע במסך.",
+                    "עדכנו את פרטי הטלפון או השם ולסיום לחצו על שמור."
+                ]
+            },
+            {
+                id: "and-4",
+                category: "android",
+                title: "איך משנים את שפת המכשיר לעברית?",
+                icon: "🌐",
+                steps: [
+                    "פתחו את אפליקציית ההגדרות וגללו מטה לתפריט ניהול כללי (או מערכת).",
+                    "לחצו על שפה וקלט (Language & Input) ולאחר מכן על שפה (Language).",
+                    "לחצו על כפתור הוספת שפה (Add language) ובחרו עברית מתוך הרשימה.",
+                    "גררו את השפה העברית אל ראש הרשימה כדי להפוך אותה לשפת המכשיר הראשית שלכם."
+                ]
+            },
+            {
+                id: "and-5",
+                category: "android",
+                title: "איך מוסיפים חשבון גוגל (Gmail) למכשיר?",
+                icon: "✉️",
+                steps: [
+                    "פתחו את אפליקציית ההגדרות במכשיר.",
+                    "היכנסו לתפריט משתמשים וחשבונות (או סיסמאות ומילוי אוטומטי).",
+                    "לחצו על אפשרות הוספת חשבון ובחרו בסוג החשבון: Google.",
+                    "עקבו אחר ההנחיות המופיעות על המסך להזנת כתובת המייל והסיסמה שלכם."
+                ]
+            },
+            {
+                id: "and-6",
+                category: "android",
+                title: "איך מנהלים וחוסמים התראות של אפליקציות?",
+                icon: "🔔",
+                steps: [
+                    "פתחו את ההגדרות והיכנסו לתפריט התראות (או יישומים והתראות).",
+                    "לחצו על הגדרות אפליקציה ובחרו מתוך הרשימה את האפליקציה שמציקה לכם.",
+                    "כבו את המתג הראשי שלה כדי להפסיק לקבל ממנה הודעות קופצות ורעשים."
+                ]
+            },
+            {
+                id: "and-7",
+                category: "android",
+                title: "איך חוסמים מספרים לא רצויים ושיחות ספאם?",
+                icon: "🚫",
+                steps: [
+                    "פתחו את אפליקציית הטלפון הירוקה/כחולה המקורית שלכם.",
+                    "עברו ללשונית אחרונים (שם מופיעות השיחות האחרונות שבוצעו במכשיר).",
+                    "לחצו לחיצה ארוכה על מספר הטלפון המטריד שברצונכם לחסום.",
+                    "בתפריט הקטן שייפתח – בחרו באפשרות חסימה או דיווח על ספאם."
+                ]
+            },
+            {
+                id: "and-8",
+                category: "android",
+                title: "איך מגבים נתונים ומאפסים את המכשיר במקרה חירום?",
+                icon: "⚠️",
+                steps: [
+                    "לגיבוי ושמירה: הגדרות > שירותי גוגל > גיבוי > בחרו את הנתונים החשובים לכם והפעילו את הגיבוי.",
+                    "לאיפוס מלא: ודאו שהסוללה שלכם מעל 70% והמכשיר מחובר למטען ולרשת אינטרנט.",
+                    "חפשו את המילה 'איפוס' בתוך שורת החיפוש העליונה של ההגדרות.",
+                    "בצעו איפוס (זהירות: פעולה זו מוחקת לחלוטין את כל תוכן המכשיר ומחזירה אותו למצב חדש)."
+                ]
+            },
+            {
+                id: "ios-1",
+                category: "iphone",
+                title: "איך מורידים אפליקציות באייפון?",
+                icon: "🍏",
+                steps: [
+                    "פתחו את אפליקציית App Store (סמל האות A הלבנה על רקע כחול).",
+                    "לחצו על לשונית חיפוש (סמל זכוכית מגדלת) בתחתית המסך.",
+                    "הקלידו את שם האפליקציה המבוקשת בשורת החיפוש העליונה.",
+                    "לחצו על סמל הענן או על כפתור הורד (Get) והמתינו לסיום ההורדה."
+                ]
+            },
+            {
+                id: "ios-2",
+                category: "iphone",
+                title: "איך משנים את שפת האייפון לעברית?",
+                icon: "🌐",
+                steps: [
+                    "היכנסו לאפליקציית Settings (הגדרות - גלגל שיניים אפור) וביחרו בתפריט General (כללי).",
+                    "לחצו על האפשרות Language & Region (שפה ואזור).",
+                    "לחצו על Add Language (הוסף שפה) ובחרו מתוך הרשימה בעברית.",
+                    "אשרו את השפה העברית כחלופה הראשית והמובילה של המכשיר שלכם."
+                ]
+            },
+            {
+                id: "ios-3",
+                category: "iphone",
+                title: "איך מגדירים אבטחה (זיהוי פנים או טביעת אצבע)?",
+                icon: "🔒",
+                steps: [
+                    "זיהוי פנים (Face ID): הגדרות > זיהוי פנים וקוד גישה > הזנו את קוד הנעילה שלכם > לחצו על הגדרת זיהוי פנים ועקבו אחר הוראות המצלמה לסריקת הפנים.",
+                    "טביעת אצבע (Touch ID): הגדרות > טביעת אצבע וקוד גישה > הזנו קוד > לחצו על הוספת טביעת אצבע והניחו את האצבע על כפתור הבית והרימו אותה שוב ושוב לפי ההנחיות."
+                ]
+            },
+            {
+                id: "ios-4",
+                category: "iphone",
+                title: "איך מבצעים שיחת פייסטיים (FaceTime)?",
+                icon: "📹",
+                steps: [
+                    "פתחו את אפליקציית FaceTime הירוקה או היכנסו ישירות לאנשי הקשר שלכם.",
+                    "בחרו את איש הקשר אליו תרצו להתקשר.",
+                    "לחצו על סמל הווידאו (לשיחה עם מצלמה פתוחה) או על סמל הטלפון (לשיחה קולית רגילה)."
+                ]
+            },
+            {
+                id: "ios-5",
+                category: "iphone",
+                title: "איך חוסמים מספרים מציקים באייפון?",
+                icon: "🚫",
+                steps: [
+                    "פתחו את אפליקציית הטלפון (הסמל הירוק עם שפופרת הטלפון הלבנה).",
+                    "עברו לשונית אחרונים (Recents) הממוקמת בתחתית המסך.",
+                    "לחצו על סמל ה-i הכחול והקטן שמופיע בצד, בשורה של המספר הלא מוכר.",
+                    "גללו עד תחתית המסך החדש שנפתח ולחצו על הכפתור האדום: חסום איש קשר זה."
+                ]
+            },
+            {
+                id: "ios-6",
+                category: "iphone",
+                title: "איך מנהלים התראות ועדכונים באייפון?",
+                icon: "🔔",
+                steps: [
+                    "פתחו את אפליקציית הגדרות והיכנסו לתפריט עדכונים (Notifications).",
+                    "בחרו מתוך רשימת האפליקציות שמופיעה את האפליקציה שברצונכם לנהל או להשתיק.",
+                    "כבו או הפעילו את מתג העדכונים הראשי, ובחרו את סגנון ההתראה ואת הצלילים המועדפים עליכם."
+                ]
+            },
+            {
+                id: "ios-7",
+                category: "iphone",
+                title: "מה עוד כדאי לדעת על שימוש באייפון? (טיפים יומיומיים)",
+                icon: "💡",
+                steps: [
+                    "ניווט והגעה: השתמשו באפליקציות המפות המובנות (Apple Maps או Google Maps) לקבלת הוראות הגעה מפורטות ומסלולי נסיעה קלים.",
+                    "ארנק דיגיטלי: ניתן לבצע תשלומים מאובטחים בחנויות ישירות על ידי קירוב המכשיר למסוף התשלום (Apple Pay).",
+                    "תזכורות: הגדירו תזכורות למשימות יומיומיות, ביקורי רופא או סידורים דרך אפליקציית 'תזכורות' כדי שהמכשיר יזכיר לכם בזמן.",
+                    "שיתוף משפחתי: מאפשר לשתף אפליקציות שנרכשו, מיקום גיאוגרפי בזמן אמת, נתוני בריאות, ואפילו להגדיר איש קשר אמין שיעזור לכם לשחזר את קוד המכשיר במקרה ששכחתם אותו."
+                ]
+            }
+        ];
+
+        function App() {
+            const [searchQuery, setSearchQuery] = useState("");
+            const [selectedCategory, setSelectedCategory] = useState("all");
+            const [expandedGuide, setExpandedGuide] = useState(null);
+            const [completedSteps, setCompletedSteps] = useState({});
+            const [textSize, setTextSize] = useState("md"); // sm, md, lg, xl
+            const [speakingId, setSpeakingId] = useState(null);
+
+            // Load completed steps from localStorage on load
+            useEffect(() => {
+                const saved = localStorage.getItem("easytech_completed_steps");
+                if (saved) {
+                    try {
+                        setCompletedSteps(JSON.parse(saved));
+                    } catch (e) {
+                        console.error("Failed to parse saved progress");
+                    }
+                }
+            }, []);
+
+            // Save completed steps to localStorage when updated
+            const toggleStep = (guideId, stepIndex, event) => {
+                event.stopPropagation(); // Prevent card from toggling
+                const key = `${guideId}-${stepIndex}`;
+                const updated = {
+                    ...completedSteps,
+                    [key]: !completedSteps[key]
+                };
+                setCompletedSteps(updated);
+                localStorage.setItem("easytech_completed_steps", JSON.stringify(updated));
+            };
+
+            // Reset checklist progress
+            const resetProgress = () => {
+                if (confirm("האם ברצונך לאפס את כל הסימונים שביצעת במדריך?")) {
+                    setCompletedSteps({});
+                    localStorage.removeItem("easytech_completed_steps");
+                }
+            };
+
+            // Filter guides by Category and Search Query
+            const filteredGuides = useMemo(() => {
+                return guidesData.filter(guide => {
+                    const matchesCategory = selectedCategory === "all" || guide.category === selectedCategory;
+                    const matchesSearch = searchQuery === "" || 
+                        guide.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                        guide.steps.some(step => step.toLowerCase().includes(searchQuery.toLowerCase()));
+                    return matchesCategory && matchesSearch;
+                });
+            }, [selectedCategory, searchQuery]);
+
+            // Total completion stats for the gamified progress bar
+            const stats = useMemo(() => {
+                let totalSteps = 0;
+                let completedCount = 0;
+                
+                filteredGuides.forEach(guide => {
+                    guide.steps.forEach((_, idx) => {
+                        totalSteps++;
+                        if (completedSteps[`${guide.id}-${idx}`]) {
+                            completedCount++;
+                        }
+                    });
+                });
+
+                return {
+                    total: totalSteps,
+                    completed: completedCount,
+                    percent: totalSteps > 0 ? Math.round((completedCount / totalSteps) * 100) : 0
+                };
+            }, [filteredGuides, completedSteps]);
+
+            // Text size styles mapping
+            const sizeClasses = {
+                sm: {
+                    title: "text-base",
+                    body: "text-sm",
+                    stepNum: "w-5 h-5 text-xs"
+                },
+                md: {
+                    title: "text-lg md:text-xl",
+                    body: "text-base md:text-lg",
+                    stepNum: "w-7 h-7 text-sm"
+                },
+                lg: {
+                    title: "text-xl md:text-2xl",
+                    body: "text-lg md:text-xl",
+                    stepNum: "w-8 h-8 text-base"
+                },
+                xl: {
+                    title: "text-2xl md:text-3xl",
+                    body: "text-xl md:text-2xl",
+                    stepNum: "w-9 h-9 text-lg"
+                }
+            };
+
+            // Text To Speech implementation
+            const toggleSpeech = (guideId, title, steps, event) => {
+                event.stopPropagation(); // Avoid card toggle
+                
+                if (!('speechSynthesis' in window)) {
+                    alert("מצטערים, המכשיר שלך לא תומך בהקראת קולית בדפדפן זה.");
+                    return;
+                }
+
+                if (speakingId === guideId) {
+                    window.speechSynthesis.cancel();
+                    setSpeakingId(null);
+                    return;
+                }
+
+                // Stop any current speech
+                window.speechSynthesis.cancel();
+
+                // Format steps into a natural speaking flow
+                const formattedSpeech = `${title}. ` + steps.map((step, index) => `שלב ${index + 1}: ${step}`).join(". ");
+                
+                const utterance = new SpeechSynthesisUtterance(formattedSpeech);
+                utterance.lang = 'he-IL';
+                utterance.rate = 0.85; // Calmer and slower speech rate for clarity
+
+                utterance.onend = () => setSpeakingId(null);
+                utterance.onerror = () => setSpeakingId(null);
+
+                setSpeakingId(guideId);
+                window.speechSynthesis.speak(utterance);
+            };
+
+            // Stop speech when component unmounts or navigates away
+            useEffect(() => {
+                return () => {
+                    if ('speechSynthesis' in window) {
+                        window.speechSynthesis.cancel();
+                    }
+                };
+            }, []);
+
+            return (
+                <div class="max-w-md mx-auto bg-[#F4F7F6] min-h-screen flex flex-col shadow-xl border-x border-gray-200 relative pb-40">
+                    
+                    {/* Top Native-Feel Header */}
+                    <header class="bg-gradient-to-r from-[#2C5E53] to-[#3B7D6E] text-white pt-6 pb-5 px-5 rounded-b-[2rem] shadow-md sticky top-0 z-50">
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="flex items-center gap-3">
+                                <div class="bg-white/20 p-2 rounded-xl text-xl">📱</div>
+                                <div>
+                                    <h1 class="text-xl font-bold tracking-tight">פשוט וקל</h1>
+                                    <p class="text-xs text-emerald-100 font-light">מדריך הכיס הדיגיטלי שלך</p>
+                                </div>
+                            </div>
+                            
+                            {/* Font size control button */}
+                            <div class="flex items-center bg-black/10 rounded-lg p-1 gap-1">
+                                <button 
+                                    onClick={() => setTextSize(prev => prev === "sm" ? "md" : prev === "md" ? "lg" : prev === "lg" ? "xl" : "sm")}
+                                    class="text-xs px-2 py-1 bg-white/20 hover:bg-white/30 rounded font-bold transition-all"
+                                    title="שנה גודל כתב"
+                                >
+                                    כתב: {textSize.toUpperCase()}
+                                </button>
+                            </div>
+                        </div>
+
+                        {/* Search Bar Input */}
+                        <div class="relative mt-2">
+                            <span class="absolute inset-y-0 right-3 flex items-center pr-1 text-gray-300">
+                                🔍
+                            </span>
+                            <input 
+                                type="text"
+                                placeholder="מה ברצונך לעשות? (לדוגמה: שליחת תמונה)"
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                                class="w-full bg-white text-gray-800 pr-10 pl-4 py-3 rounded-xl shadow-inner focus:outline-none focus:ring-2 focus:ring-[#3B7D6E] text-base placeholder-gray-400"
+                            />
+                            {searchQuery && (
+                                <button 
+                                    onClick={() => setSearchQuery("")}
+                                    class="absolute inset-y-0 left-3 flex items-center pl-1 text-gray-400 text-sm"
+                                >
+                                    ✕
+                                </button>
+                            )}
+                        </div>
+                    </header>
+
+                    {/* Progress Bar & Interactive Summary */}
+                    <div class="px-5 mt-4">
+                        <div class="bg-white rounded-2xl p-4 shadow-sm border border-emerald-50/60">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-xs font-semibold text-[#2C5E53] bg-emerald-50 px-2.5 py-1 rounded-full">ההתקדמות שלך היום</span>
+                                <div class="flex gap-2">
+                                    <span class="text-xs text-gray-500">{stats.completed} מתוך {stats.total} שלבים בוצעו</span>
+                                    {stats.completed > 0 && (
+                                        <button 
+                                            onClick={resetProgress}
+                                            class="text-xs text-red-500 hover:underline font-bold"
+                                        >
+                                            איפוס
+                                        </button>
+                                    )}
+                                </div>
+                            </div>
+                            <div class="w-full bg-gray-100 h-2.5 rounded-full overflow-hidden">
+                                <div 
+                                    class="bg-gradient-to-r from-emerald-400 to-[#3B7D6E] h-full transition-all duration-500 rounded-full"
+                                    style={{ width: `${stats.percent}%` }}
+                                ></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Category Filter Tabs */}
+                    <div class="flex px-5 gap-2 mt-4 overflow-x-auto pb-1 no-scrollbar">
+                        <button 
+                            onClick={() => setSelectedCategory("all")}
+                            class={`px-4 py-2.5 rounded-xl font-semibold text-sm transition-all whitespace-nowrap flex items-center gap-1.5 ${
+                                selectedCategory === "all" 
+                                    ? "bg-[#2C5E53] text-white shadow-md shadow-[#2C5E53]/10" 
+                                    : "bg-white text-gray-600 hover:bg-gray-50 border border-gray-100"
+                            }`}
+                        >
+                            🌍 הכל
+                        </button>
+                        <button 
+                            onClick={() => setSelectedCategory("whatsapp")}
+                            class={`px-4 py-2.5 rounded-xl font-semibold text-sm transition-all whitespace-nowrap flex items-center gap-1.5 ${
+                                selectedCategory === "whatsapp" 
+                                    ? "bg-emerald-600 text-white shadow-md shadow-emerald-600/10" 
+                                    : "bg-white text-gray-600 hover:bg-gray-50 border border-gray-100"
+                            }`}
+                        >
+                            🟢 וואטסאפ
+                        </button>
+                        <button 
+                            onClick={() => setSelectedCategory("android")}
+                            class={`px-4 py-2.5 rounded-xl font-semibold text-sm transition-all whitespace-nowrap flex items-center gap-1.5 ${
+                                selectedCategory === "android" 
+                                    ? "bg-blue-600 text-white shadow-md shadow-blue-600/10" 
+                                    : "bg-white text-gray-600 hover:bg-gray-50 border border-gray-100"
+                            }`}
+                        >
+                            🤖 אנדרואיד
+                        </button>
+                        <button 
+                            onClick={() => setSelectedCategory("iphone")}
+                            class={`px-4 py-2.5 rounded-xl font-semibold text-sm transition-all whitespace-nowrap flex items-center gap-1.5 ${
+                                selectedCategory === "iphone" 
+                                    ? "bg-gray-800 text-white shadow-md" 
+                                    : "bg-white text-gray-600 hover:bg-gray-50 border border-gray-100"
+                            }`}
+                        >
+                            🍏 אייפון
+                        </button>
+                    </div>
+
+                    {/* Active Guides List */}
+                    <div class="px-5 mt-4 flex-1 space-y-3">
+                        {filteredGuides.length > 0 ? (
+                            filteredGuides.map((guide) => {
+                                const isExpanded = expandedGuide === guide.id;
+                                return (
+                                    <div 
+                                        key={guide.id} 
+                                        class={`bg-white rounded-2xl border transition-all duration-300 overflow-hidden shadow-sm hover:shadow-md ${
+                                            isExpanded 
+                                                ? "border-[#3B7D6E] ring-1 ring-[#3B7D6E]/10" 
+                                                : "border-gray-200/80"
+                                        }`}
+                                    >
+                                        {/* Card Header (Expand/Collapse Trigger) */}
+                                        <div 
+                                            onClick={() => setExpandedGuide(isExpanded ? null : guide.id)}
+                                            class="p-4 flex items-center justify-between cursor-pointer select-none"
+                                        >
+                                            <div class="flex items-center gap-3">
+                                                <span class="text-2xl bg-[#F0F4F4] p-2 rounded-xl">{guide.icon}</span>
+                                                <h3 class={`font-bold text-[#1A2B4C] leading-snug ${sizeClasses[textSize].title}`}>
+                                                    {guide.title}
+                                                </h3>
+                                            </div>
+                                            <div class="flex items-center gap-2">
+                                                {/* Text-To-Speech Button */}
+                                                <button 
+                                                    onClick={(e) => toggleSpeech(guide.id, guide.title, guide.steps, e)}
+                                                    class={`p-2 rounded-xl transition-colors ${
+                                                        speakingId === guide.id 
+                                                            ? "bg-red-50 text-red-500 animate-pulse" 
+                                                            : "bg-gray-50 hover:bg-gray-100 text-[#2C5E53]"
+                                                    }`}
+                                                    title={speakingId === guide.id ? "עצור הקראה" : "הקרא בקול"}
+                                                >
+                                                    {speakingId === guide.id ? "⏸️" : "🔊"}
+                                                </button>
+                                                <span class="text-gray-400 text-lg transition-transform duration-300" style={{ transform: isExpanded ? 'rotate(180deg)' : 'rotate(0)' }}>
+                                                    ▼
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        {/* Expandable Steps Section */}
+                                        {isExpanded && (
+                                            <div class="border-t border-gray-100 bg-[#FBFDFD] p-4 space-y-3">
+                                                
+                                                {/* Category Helper badge inside guide */}
+                                                <div class="flex items-center justify-between pb-1 border-b border-gray-100">
+                                                    <span class="text-xs font-semibold text-gray-400">
+                                                        מקטע: {guide.category === 'whatsapp' ? '🟢 וואטסאפ' : guide.category === 'android' ? '🤖 אנדרואיד' : '🍏 אייפון'}
+                                                    </span>
+                                                    <span class="text-xs text-emerald-600 font-medium bg-emerald-50 px-2 py-0.5 rounded-full">
+                                                        לחצו על כל שלב שביצעתם לסימון
+                                                    </span>
+                                                </div>
+
+                                                <div class="space-y-2">
+                                                    {guide.steps.map((step, idx) => {
+                                                        const stepKey = `${guide.id}-${idx}`;
+                                                        const isChecked = completedSteps[stepKey];
+                                                        return (
+                                                            <div 
+                                                                key={idx}
+                                                                onClick={(e) => toggleStep(guide.id, idx, e)}
+                                                                class={`flex gap-3 items-start p-3 rounded-xl cursor-pointer step-transition border ${
+                                                                    isChecked 
+                                                                        ? "bg-emerald-50/40 border-emerald-100 text-gray-400" 
+                                                                        : "bg-white border-gray-100 text-[#1E293B]"
+                                                                }`}
+                                                            >
+                                                                {/* Interactive Step Index Circle */}
+                                                                <span class={`flex items-center justify-center shrink-0 rounded-full font-bold ${sizeClasses[textSize].stepNum} ${
+                                                                    isChecked 
+                                                                        ? "bg-emerald-500 text-white" 
+                                                                        : "bg-[#2C5E53]/15 text-[#2C5E53]"
+                                                                }`}>
+                                                                    {isChecked ? "✓" : idx + 1}
+                                                                </span>
+
+                                                                {/* Step Text content */}
+                                                                <p class={`leading-relaxed ${sizeClasses[textSize].body} ${isChecked ? 'line-through decoration-emerald-200' : ''}`}>
+                                                                    {step}
+                                                                </p>
+                                                            </div>
+                                                        );
+                                                    })}
+                                                </div>
+                                            </div>
+                                        )}
+                                    </div>
+                                );
+                            })
+                        ) : (
+                            <div class="bg-white rounded-2xl p-8 text-center border border-gray-200">
+                                <p class="text-gray-400 text-3xl mb-2">🔍</p>
+                                <p class="text-gray-500 font-bold">לא מצאנו מדריך התואם לחיפוש שלך</p>
+                                <p class="text-xs text-gray-400 mt-1">נסו מילים פשוטות יותר (כמו "וואטסאפ" או "Wi-Fi")</p>
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Permanent Floating Anchor (חבל ההצלה) */}
+                    <div class="fixed bottom-0 left-0 right-0 max-w-md mx-auto p-4 bg-gradient-to-t from-[#F4F7F6] via-[#F4F7F6] to-transparent z-40">
+                        <div class="bg-gradient-to-r from-[#D9EAE6] to-[#E3F2EE] border-2 border-[#2C5E53]/40 rounded-2xl p-4 shadow-lg flex items-start gap-3">
+                            <span class="text-3xl shrink-0 mt-0.5">💡</span>
+                            <div>
+                                <h4 class="font-extrabold text-[#2C5E53] text-sm mb-1">חבל ההצלה הקבוע שלך</h4>
+                                <p class="text-xs text-gray-700 leading-relaxed font-semibold">
+                                    לא משנה איפה אתם במסך או אם נלחץ משהו בטעות – לחיצה אחת על מקש הבית העגול <span class="bg-white/80 px-1.5 py-0.5 rounded-md inline-block align-middle border border-gray-300">⚪</span> בתחתית הטלפון שלכם תחזיר אתכם מיד למסך הבית הראשי והבטוח.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
