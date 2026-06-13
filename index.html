@@ -113,7 +113,7 @@
     ];
     const catByKey = Object.fromEntries(CATS.map(c=>[c.key,c]));
 
-    // Guide data with unvoweled text
+    // Guide data
     const guidesData = [
         // ── יסודות ───────────────────────────────────────────────────────
         {id:"bas-1",category:"basics",title:"איך מדליקים ומכבים את הטלפון?",steps:["הדלקה: לחצו לחיצה ארוכה (3-5 שניות) על כפתור ההפעלה שבצד הטלפון עד שהמסך יידלק.","כיבוי אנדרואיד: לחצו לחיצה ארוכה על כפתור ההפעלה > בחרו כיבוי > אשרו.","כיבוי אייפון (עם כפתור בית): לחצו לחיצה ארוכה על כפתור ההפעלה > גררו את המחוון ימינה לכיבוי.","כיבוי אייפון (ללא כפתור בית): לחצו בו-זמנית על כפתור ההפעלה ועל כפתור הווליום > גררו את המחוון לכיבוי."]},
@@ -143,7 +143,7 @@
         {id:"wa-9",category:"whatsapp",title:"איך יוצרים רשימת תפוצה?",steps:["במסך הראשי של וואטסאפ, לחצו על שלוש הנקודות בפינה העליונה.","בחרו: רשימת תפוצה חדשה.","צרפו לפחות שני אנשים מרשימת אנשי הקשר.","לחצו על החץ הירוק לסיום – ההודעה תגיע לכל אחד בנפרד."]},
         {id:"wa-10",category:"whatsapp",title:"איך מקשרים את וואטסאפ למחשב?",steps:["פתחו את וואטסאפ בטלפון ולחצו על שלוש הנקודות (⋮) בפינה העליונה.","בחרו: מכשירים מקושרים.","לחצו על קשר מכשיר.","פתחו במחשב את הכתובת web.whatsapp.com וסרקו את קוד ה-QR שמופיע עם הטלפון.","מעתה תוכלו לכתוב ולקרוא הודעות ישירות מהמחשב!"]},
         {id:"wa-11",category:"whatsapp",title:"איך שולחים מיקום נוכחי ובזמן אמת (מעקב)?",steps:["ודאו שרכיב המיקום (GPS) מופעל בטלפון שלכם (דרך וילון ההגדרות העליון שנפתח בגרירה מטה).","היכנסו לשיחה של האדם שברצונכם לשלוח לו את המיקום בוואטסאפ.","לחצו על סמל הסיכה (📎) או סמל הפלוס (+) שליד שורת כתיבת ההודעה.","בחרו באפשרות 'מיקום' (סמל של סיכה עגולה על גבי מפה).","לשליחת נקודה קבועה ברגע זה: לחצו על 'שלח את מיקומך הנוכחי' (האדם השני יראה בדיוק היכן הייתם כששלחתם והסימון לא ישתנה גם אם תזוזו).","לשיתוף בזמן אמת (מעקב בתנועה): לחצו על 'שתף מיקום בזמן אמת', בחרו את משך הזמן (למשל: שעה אחת) ולחצו על חץ השליחה. המיקום שלכם יתעדכן על המפה של האחר גם כשאתם זזים!"]},
-        {id:"wa-12",category:"whatsapp",title:"איך מצרפים קובץ, תמונה או מסמך?",steps:["בתוך שיחה, לחצו על סמל הסיכה (📎) שליד שורת הכתיבה.","בחרו את סוג הקובץ: תמונה מהגלריה, מסמך (PDF, Word), אנשי קשר, או אודיו.","נווטו לקובץ הרצוי ולחצו עליו לבחירה.","ניתן להוסיף כיתוב קצר ולאחר מכן לחצו על החץ הירוק לשליחה."]},
+        {id:"wa-12",category:"whatsapp",title:"איך מצרפים קובץ, תמונה או מסמך?",steps:["בתוך שיחה, לחצו על סמל הסיכה (📎) שליד שורת כתיבה.","בחרו את סוג הקובץ: תמונה מהגלריה, מסמך (PDF, Word), אנשי קשר, או אודיו.","נווטו לקובץ הרצוי ולחצו עליו לבחירה.","ניתן להוסיף כיתוב קצר ולאחר מכן לחצו על החץ הירוק לשליחה."]},
         {id:"wa-13",category:"whatsapp",title:"איך יוצרים קבוצה חדשה?",steps:["לחצו על שלוש הנקודות (⋮) בפינה העליונה ובחרו: קבוצה חדשה.","בחרו את האנשים שתרצו להוסיף לקבוצה מרשימת אנשי הקשר.","לחצו על החץ הירוק, הוסיפו שם לקבוצה ואם תרצו – גם תמונה.","לחצו צור – הקבוצה מוכנה ותוכלו להתחיל לשלוח הודעות לכולם יחד!"]},
         // ── אנדרואיד ─────────────────────────────────────────────────────
         {id:"and-1",category:"android",title:"איך מורידים ומתקינים אפליקציות?",steps:["פתחו את חנות Google Play (האייקון של המשולש הצבעוני).","הקלידו את שם האפליקציה בתיבת החיפוש העליונה.","בדקו את התוצאות (מומלץ לדלג על שורות שכתוב עליהן 'ממומן').","לחצו על כפתור התקן והמתינו לסיום ההתקנה."]},
@@ -184,7 +184,7 @@
         {id:"nav-3",category:"nav",title:"איך מדווחים על תאונה או פקק ב-Waze?",steps:["לחצו על סמל הדיווח (עיגול עם סימן קריאה) בתחתית המסך.","בחרו את סוג הדיווח: תאונה, פקק, מהמורה, מצלמת מהירות.","אשרו – הדיווח יישלח לכל הנהגים מאחוריכם.","חשוב: דווחו רק כשהרכב עצור!"]},
         {id:"nav-4",category:"nav",title:"איך מנווטים ב-Google Maps?",steps:["פתחו את Google Maps.","הקלידו את היעד בשורת החיפוש.","בחרו את המקום מהרשימה ולחצו על כפתור הניווט (חץ כחול).","בחרו מסלול מהאפשרויות ולחצו התחל (Start)."]},
         {id:"nav-5",category:"nav",title:"איך שומרים מיקום מועדף ב-Google Maps?",steps:["חפשו את המקום הרצוי (בית חולים, רופא, קניון).","לחצו על שם המקום בתחתית המסך.","לחצו על סמל הכוכב (שמור).","בפעם הבאה: לחצו על שמור (Saved) בתפריט התחתי."]},
-        {id:"nav-6",category:"nav",title:"איך מוצאים עסקים קרובים?",steps:["פתחו Google Maps ולחצו על שורת החיפוש.","הקלידו מה שאתם מחפשים: בית מרקחת, בנק, רופא.","תופיע מפה WITH כל המקומות הקרובים ושעות הפתיחה.","לחצו על מקום לקבלת כתובת ומספר טלפון, ואז על ניווט להגעה."]},
+        {id:"nav-6",category:"nav",title:"איך מוצאים עסקים קרובים?",steps:["פתחו Google Maps ולחצו על שורת החיפוש.","הקלידו מה שאתם מחפשים: בית מרקחת, בנק, רופא.","תופיע מפה עם כל המקומות הקרובים ושעות הפתיחה.","לחצו על מקום לקבלת כתובת ומספר טלפון, ואז על ניווט להגעה."]},
         // ── זום ──────────────────────────────────────────────────────────
         {id:"zoom-1",category:"zoom",title:"איך מתקינים ומגדירים את זום?",steps:["הורידו את Zoom מ-Google Play או App Store – חינמי.","פתחו ולחצו על הירשם בחינם (Sign Up Free).","הזינו כתובת מייל וסיסמה, ואשרו את המייל.","אשרו גישה למצלמה ולמיקרופון כשהאפליקציה תבקש."]},
         {id:"zoom-2",category:"zoom",title:"איך מצטרפים לפגישה עם קישור?",steps:["קיבלתם קישור בוואטסאפ או מייל? לחצו עליו ישירות.","האפליקציה תיפתח ותכניס אתכם לפגישה אוטומטית.","לחצו על הצטרף עם אודיו המכשיר לשמוע ולהישמע.","תראו את המשתתפים ותוכלו להתחיל לשוחח."]},
@@ -216,10 +216,7 @@
         const [aiLoading, setAiLoading]           = useState(false);
         const [expandedGuide, setExpandedGuide]   = useState(null);
         const [completedSteps, setCompletedSteps] = useState({});
-        const [textSize, setTextSize]             = useState("lg");
         const [showConfirm, setShowConfirm]       = useState(false);
-
-        const sizes = ["sm","md","lg","xl"];
 
         useEffect(() => {
             try { const s = localStorage.getItem("pv_steps"); if(s) setCompletedSteps(JSON.parse(s)); } catch(e) {}
@@ -241,23 +238,6 @@
             try { localStorage.removeItem("pv_steps"); } catch(e) {}
             setShowConfirm(false);
         };
-
-        const decreaseSize = () => { 
-            const i = sizes.indexOf(textSize); 
-            if(i > 0) setTextSize(sizes[i-1]); 
-        };
-
-        const increaseSize = () => { 
-            const i = sizes.indexOf(textSize); 
-            if(i < sizes.length-1) setTextSize(sizes[i+1]); 
-        };
-
-        const sc = {
-            sm:{title:"text-base", body:"text-sm"},
-            md:{title:"text-lg",   body:"text-base"},
-            lg:{title:"text-xl",   body:"text-lg"},
-            xl:{title:"text-2xl",  body:"text-xl"}
-        }[textSize];
 
         // Filter guides by active category + search query
         const filteredGuides = useMemo(() => guidesData.filter(g => {
@@ -388,15 +368,6 @@ ${context}`;
                                 <span className="font-extrabold text-xl tracking-tight flex items-center gap-1.5">📱 פשוט וקל</span>
                             )}
                         </div>
-                        
-                        {/* Font Resizing buttons */}
-                        <div className="flex items-center bg-black/15 rounded-xl p-1 gap-1 border border-white/10">
-                            <button onClick={decreaseSize} disabled={textSize === "sm"}
-                                className="w-8 h-8 flex items-center justify-center rounded-lg bg-white/10 hover:bg-white/25 disabled:opacity-30 font-bold text-sm transition-all btn-3d-header" aria-label="הקטן כתב">א−</button>
-                            <span className="text-xs font-bold px-1.5 text-blue-100">{textSize.toUpperCase()}</span>
-                            <button onClick={increaseSize} disabled={textSize === "xl"}
-                                className="w-8 h-8 flex items-center justify-center rounded-lg bg-white/10 hover:bg-white/25 disabled:opacity-30 font-bold text-sm transition-all btn-3d-header" aria-label="הגדל כתב">א+</button>
-                        </div>
                     </div>
                 </header>
 
@@ -492,7 +463,7 @@ ${context}`;
                             
                             <div className="relative">
                                 <span className="absolute inset-y-0 right-3 flex items-center text-gray-400 pointer-events-none">🔍</span>
-                                <input type="text" placeholder={`חיפוש מהיר בממדריכי ${catByKey[selectedCat]?.label || ""}...`}
+                                <input type="text" placeholder={`חיפוש מהיר במדריכי ${catByKey[selectedCat]?.label || ""}...`}
                                     value={searchQuery} onChange={e => {setSearchQuery(e.target.value); setAiAnswer("");}}
                                     className="w-full bg-white text-gray-800 pr-10 pl-8 py-3.5 rounded-xl shadow-sm border border-gray-200/60 focus:outline-none focus:ring-2 focus:ring-green-300 text-base placeholder-gray-400" />
                                 {searchQuery && <button onClick={() => setSearchQuery("")} className="absolute inset-y-0 left-3 flex items-center text-gray-400">✕</button>}
@@ -567,7 +538,7 @@ ${context}`;
                                         <button onClick={() => setExpandedGuide(isExpanded ? null : guide.id)}
                                             className={`w-full text-right p-4 flex items-center justify-between gap-3 focus:outline-none btn-3d ${isExpanded ? "border-b-green-500" : "border-b-gray-300"}`}>
                                             <div className="flex-1 min-w-0">
-                                                <p className={`font-extrabold text-gray-800 leading-snug ${sc.title}`}>{guide.title}</p>
+                                                <p className="font-extrabold text-gray-800 leading-snug text-lg md:text-xl">{guide.title}</p>
                                                 {prog.done > 0 && (
                                                     <span className={`text-xs font-bold mt-2 inline-block px-2.5 py-0.5 rounded-full ${allDone ? "bg-green-100 text-green-700" : "bg-amber-50 text-amber-600"}`}>
                                                         {allDone ? "✓ מדריך הושלם בהצלחה!" : `${prog.done}/${prog.total} שלבים הושלמו`}
@@ -599,7 +570,7 @@ ${context}`;
                                                                     <span className={`shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold mt-0.5 transition-all ${isChecked ? "bg-green-500 text-white shadow-sm" : "bg-white border-2 border-gray-200"}`}>
                                                                         {isChecked ? "✓" : ""}
                                                                     </span>
-                                                                    <p className={`leading-relaxed flex-1 ${sc.body} ${isChecked ? "line-through text-gray-400" : "text-gray-700"}`}>{step}</p>
+                                                                    <p className={`leading-relaxed flex-1 text-base md:text-lg ${isChecked ? "line-through text-gray-400" : "text-gray-700"}`}>{step}</p>
                                                                 </div>
                                                                 {!isLast && (
                                                                     <div className="flex justify-center py-0.5 text-green-300 text-base select-none pointer-events-none">↓</div>
