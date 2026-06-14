@@ -1,15 +1,14 @@
-```html
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>מדריך דיגיטלי לסמארטפון וזהירות מהונאות</title>
+    <title>המדריך הדיגיטלי המוגן</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts (Heebo & Assistant for modern Hebrew typography) -->
+    <!-- Google Fonts (Heebo & Assistant) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800&family=Heebo:wght@300;400;500;700;800&display=swap" rel="stylesheet">
@@ -26,25 +25,25 @@
                     },
                     colors: {
                         calm: {
-                            50: '#f4f7f6',   // Softest sage-cream
-                            100: '#e6edea',  // Calming light sage
-                            200: '#cedcd5',  // Mild sage
-                            600: '#4d7260',  // Deep calming sage
-                            700: '#3d5c4d',  // Text sage
-                            800: '#2d4439',  // Dark sage accents
+                            50: '#f4f7f6',   
+                            100: '#e6edea',  
+                            200: '#cedcd5',  
+                            600: '#4d7260',  
+                            700: '#3d5c4d',  
+                            800: '#2d4439',  
                         },
                         ocean: {
-                            50: '#f0f4f8',   // Light soft blue
-                            100: '#dbe3ec',  // Soft slate blue
-                            600: '#4a6fa5',  // Calming slate blue
-                            700: '#3b5984',  // Deep ocean
-                            800: '#233d60',  // Text dark blue
+                            50: '#f0f4f8',   
+                            100: '#dbe3ec',  
+                            600: '#4a6fa5',  
+                            700: '#3b5984',  
+                            800: '#233d60',  
                         },
                         guard: {
-                            50: '#fff5f5',   // Gentle soft red
-                            100: '#ffe3e3',  // Warning pink
-                            600: '#e05252',  // Soft coral red (alert)
-                            700: '#c93b3b',  // Warning text
+                            50: '#fff5f5',   
+                            100: '#ffe3e3',  
+                            600: '#e05252',  
+                            700: '#c93b3b',  
                         }
                     }
                 }
@@ -57,7 +56,6 @@
             background-color: #f4f7f6;
             transition: font-size 0.2s ease, background-color 0.3s ease;
         }
-        /* Smooth transition for expandable sections */
         .accordion-content {
             max-height: 0;
             overflow: hidden;
@@ -67,7 +65,6 @@
             max-height: 1000px;
             transition: max-height 0.5s ease-in;
         }
-        /* Custom scrollbar to match calming aesthetic */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -81,7 +78,6 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #4d7260;
         }
-        /* Floating animations */
         .hover-card {
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
@@ -96,34 +92,28 @@
     <!-- TOP ACCESSIBILITY & CONTROLS BAR -->
     <div class="bg-white/80 backdrop-blur-md border-b border-calm-100 sticky top-0 z-50 py-3 px-4 shadow-sm">
         <div class="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-3">
-            <!-- Brand & Tagline -->
             <div class="flex items-center gap-3">
                 <div class="p-2 bg-calm-100 rounded-xl text-calm-600">
                     <i data-lucide="shield-check" class="w-6 h-6"></i>
                 </div>
                 <div>
                     <h1 class="text-lg font-bold text-slate-900 tracking-tight">המדריך הדיגיטלי המוגן</h1>
-                    <p class="text-xs text-slate-500">לומדים להשתמש בסמארטפון ובבטחה בקצב שלכם</p>
                 </div>
             </div>
 
-            <!-- Interactive Accessibility Controls -->
             <div class="flex items-center gap-2 flex-wrap sm:flex-nowrap">
-                <!-- Warm Light Mode Toggle -->
                 <button onclick="toggleWarmMode()" id="warmBtn" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-amber-50 text-amber-800 border border-amber-200/50 hover:bg-amber-100 transition-colors">
                     <i data-lucide="eye" class="w-4 h-4"></i>
                     <span>מצב תאורה רכה</span>
                 </button>
 
-                <!-- Text Size Adjusters -->
                 <div class="flex items-center bg-slate-100 rounded-full p-1 border border-slate-200">
-                    <button onclick="changeFontSize(-1)" class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-white text-slate-600 hover:text-slate-900 transition-all text-sm font-bold" title="הקטן גופן">א-</button>
+                    <button onclick="changeFontSize(-1)" class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-white text-slate-600 hover:text-slate-900 transition-all text-sm font-bold">א-</button>
                     <span class="px-2 text-xs text-slate-400 font-semibold">גודל טקסט</span>
-                    <button onclick="changeFontSize(1)" class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-white text-slate-600 hover:text-slate-900 transition-all text-base font-bold" title="הגדל גופן">א+</button>
+                    <button onclick="changeFontSize(1)" class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-white text-slate-600 hover:text-slate-900 transition-all text-base font-bold">א+</button>
                 </div>
 
-                <!-- Print Button -->
-                <button onclick="window.print()" class="p-2 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-full transition-colors" title="הדפס מדריך זה">
+                <button onclick="window.print()" class="p-2 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-full transition-colors" title="הדפס מדריך">
                     <i data-lucide="printer" class="w-4 h-4"></i>
                 </button>
             </div>
@@ -133,17 +123,15 @@
     <!-- MAIN APP WRAPPER -->
     <main class="max-w-6xl mx-auto px-4 py-8 flex-grow w-full">
         
-        <!-- HERO SECTION -->
+        <!-- HERO SECTION (CLEANED) -->
         <div class="text-center max-w-2xl mx-auto mb-10">
-            <span class="inline-block px-3 py-1 bg-calm-100 text-calm-700 text-xs font-bold rounded-full mb-3 uppercase tracking-wider">מדריך אינטראקטיבי מקיף</span>
-            <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4 tracking-tight">מה תרצו ללמוד לעשות היום?</h2>
-            <p class="text-slate-600 text-base md:text-lg">מדריכים מובנים בגובה העיניים. בחרו נושא, קראו את שלבי המניעה או הביצוע, וסמנו את התקדמותכם כדי ללמוד בביטחון מלא.</p>
+            <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight">מה תרצו למצוא היום?</h2>
         </div>
 
-        <!-- SEARCH BAR & CATEGORY SWITCHER -->
+        <!-- SEARCH BAR & CATEGORY SWITCHER (CLEANED) -->
         <div class="bg-white rounded-2xl p-4 md:p-6 shadow-sm border border-calm-100 mb-8 max-w-4xl mx-auto">
             <div class="flex flex-col lg:flex-row gap-4 items-center justify-between">
-                <!-- Tabs with updated 3 options -->
+                <!-- Tabs -->
                 <div class="flex flex-wrap p-1 bg-slate-100 rounded-xl w-full lg:w-auto gap-1">
                     <button onclick="switchTab('whatsapp')" id="tab-whatsapp" class="flex-1 lg:flex-initial flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-xs md:text-sm font-bold transition-all text-calm-700 bg-white shadow-sm">
                         <i data-lucide="message-square" class="w-4 h-4"></i>
@@ -160,11 +148,11 @@
                 </div>
 
                 <!-- Live Search Box -->
-                <div class="relative w-full lg:w-72">
+                <div class="relative w-full lg:w-80">
                     <span class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-slate-400">
                         <i data-lucide="search" class="w-5 h-5"></i>
                     </span>
-                    <input type="text" id="searchInput" oninput="handleSearch()" placeholder="חפשו נושא (למשל: קנס, קישור...)" class="w-full pr-10 pl-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-calm-600 focus:bg-white transition-all text-right" dir="rtl">
+                    <input type="text" id="searchInput" oninput="handleSearch()" placeholder="הקלידו מילה או נושא חופשי..." class="w-full pr-10 pl-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-calm-600 focus:bg-white transition-all text-right" dir="rtl">
                 </div>
             </div>
         </div>
@@ -175,7 +163,7 @@
             <!-- SEARCH RESULTS INDICATOR -->
             <div id="searchIndicator" class="hidden text-sm text-slate-500 mb-4 bg-white px-4 py-2 rounded-lg border border-slate-100 flex justify-between items-center">
                 <span>נמצאו <strong id="resultsCount">0</strong> תוצאות התואמות לחיפוש שלכם.</span>
-                <button onclick="clearSearch()" class="text-xs text-red-600 underline font-semibold hover:text-red-700">נקה חיפוש</button>
+                <button onclick="clearSearch()" class="text-xs text-red-600 underline font-semibold hover:text-red-700">נקה חיפוש והצג הכל</button>
             </div>
 
             <!-- SECTION A: WHATSAPP GUIDE -->
@@ -185,7 +173,6 @@
                         <span class="p-1.5 bg-green-50 text-green-600 rounded-lg"><i data-lucide="message-circle" class="w-5 h-5"></i></span>
                         מדריך שימוש באפליקציית וואטסאפ (WhatsApp)
                     </h3>
-                    <span class="text-xs font-semibold text-slate-400 bg-slate-100 px-2.5 py-1 rounded-full">9 נושאים מוסברים</span>
                 </div>
                 <div id="wa-cards-container" class="space-y-4"></div>
             </div>
@@ -197,19 +184,17 @@
                         <span class="p-1.5 bg-ocean-50 text-ocean-600 rounded-lg"><i data-lucide="phone-call" class="w-5 h-5"></i></span>
                         המדריך השלם לתפעול הסמארטפון
                     </h3>
-                    <span class="text-xs font-semibold text-slate-400 bg-slate-100 px-2.5 py-1 rounded-full">15 נושאים מוסברים</span>
                 </div>
                 <div id="smart-cards-container" class="space-y-4"></div>
             </div>
 
-            <!-- SECTION C: SCAM & SAFETY GUIDE (NEW) -->
+            <!-- SECTION C: SCAM & SAFETY GUIDE -->
             <div id="section-scams" class="hidden space-y-4">
                 <div class="border-b border-guard-100 pb-2 mb-6 flex items-center justify-between">
                     <h3 class="text-xl font-extrabold text-slate-900 flex items-center gap-2">
                         <span class="p-1.5 bg-guard-50 text-guard-600 rounded-lg"><i data-lucide="shield-alert" class="w-5 h-5"></i></span>
                         מדריך בטיחות והתגוננות מהונאות ברשת
                     </h3>
-                    <span class="text-xs font-semibold text-slate-400 bg-slate-100 px-2.5 py-1 rounded-full">6 נושאים קריטיים</span>
                 </div>
 
                 <!-- Alert Alert Banner -->
@@ -231,70 +216,22 @@
             <!-- NO RESULTS STATE -->
             <div id="noResultsState" class="hidden text-center py-12 bg-white rounded-2xl border border-dashed border-slate-300">
                 <div class="w-16 h-16 bg-slate-100 text-slate-400 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <i data-lucide="info" class="w-8 h-8"></i>
+                    <i data-lucide="help-circle" class="w-8 h-8"></i>
                 </div>
-                <h4 class="text-lg font-bold text-slate-800 mb-1">לא נמצאו תוצאות</h4>
-                <p class="text-slate-500 text-sm max-w-sm mx-auto">נסו להקליד מילת חיפוש אחרת (למשל: "קנס", "קישור", "מתנה", "אייפון" או "חסימה")</p>
+                <h4 class="text-lg font-bold text-slate-800 mb-1">לא מצאנו התאמה מדויקת</h4>
+                <p class="text-slate-500 text-sm max-w-sm mx-auto">נסו להקליד מונח פשוט יותר או לחצו על "נקה חיפוש" כדי לראות את כל המדריכים הזמינים.</p>
             </div>
 
         </div>
 
     </main>
 
-    <!-- FOOTER WITH SOURCES & LINKS -->
-    <footer class="bg-white border-t border-slate-200 mt-16 py-10 px-4">
-        <div class="max-w-4xl mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                <!-- About Card -->
-                <div>
-                    <h4 class="text-sm font-bold text-slate-900 mb-3 flex items-center gap-2">
-                        <i data-lucide="heart" class="w-4 h-4 text-rose-500"></i>
-                        מדוע פיתחנו את המדריך?
-                    </h4>
-                    <p class="text-xs text-slate-500 leading-relaxed">
-                        מטרת אתר זה היא להנגיש את השימוש בסמארטפון, בוואטסאפ ובבטיחות דיגיטלית לכולם, בדגש על פשטות, נגישות מקסימלית וחוויית למידה רגועה ומזמינה המונעת חרדה דיגיטלית מהודעות הונאה זדוניות.
-                    </p>
-                </div>
-                <!-- Sources & Credits -->
-                <div>
-                    <h4 class="text-sm font-bold text-slate-900 mb-3 flex items-center gap-2">
-                        <i data-lucide="book-open" class="w-4 h-4 text-calm-600"></i>
-                        מקורות וקישורים חיצוניים
-                    </h4>
-                    <ul class="space-y-2 text-xs text-slate-500">
-                        <li>
-                            <a href="https://howtod.org" target="_blank" rel="noopener" class="text-calm-600 hover:underline flex items-center gap-1">
-                                <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
-                                <span>מגזין "איך לעשות דברים לגולשים" - howtod.org [8]</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://support.google.com/android" target="_blank" rel="noopener" class="text-calm-600 hover:underline flex items-center gap-1">
-                                <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
-                                <span>תמיכת Android הרשמית (Google) [16, 25, 26]</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://support.apple.com/iphone" target="_blank" rel="noopener" class="text-calm-600 hover:underline flex items-center gap-1">
-                                <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
-                                <span>המדריך למשתמש ב-iPhone (תמיכת Apple) [22]</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Bottom Disclaimer -->
-            <div class="border-t border-slate-100 pt-6 text-center text-[11px] text-slate-400">
-                <p>המדריכים והשלבים מבוססים על המקורות המצורפים, הנחיות מערך הסייבר הלאומי ועדכוני אבטחה שוטפים. כל הזכויות שמורות למחברי המקורות המקוריים.</p>
-                <p class="mt-1">האתר פותח תוך הקפדה על נגישות דיגיטלית ועיצוב מאוורר להקלה על קריאה ממושכת.</p>
-            </div>
-        </div>
+    <footer class="bg-white border-t border-slate-200 mt-16 py-8 px-4 text-center text-xs text-slate-400">
+        <p>המדריך הדיגיטלי המשודרג – נגישות, פשטות וביטחון ברשת.</p>
     </footer>
 
     <!-- JAVASCRIPT LOGIC -->
     <script>
-        // Database of all guide items
         const whatsappData = [
             {
                 id: "wa-1",
@@ -306,6 +243,7 @@
                     "הגדרת מספר הטלפון הנייד שלכם וקבלת קוד אימות באמצעות SMS.",
                     "בחירת שם המשתמש שלכם והוספת תמונת פרופיל [1]."
                 ],
+                tags: ["להוריד", "להתקין", "חשבון חדש", "ווטסאפ", "וואטספ", "חנות", "אפסטור", "פליי סטור", "play store", "download", "whatsapp", "פרופיל", "מספר טלפון", "קוד אימות"],
                 icon: "download"
             },
             {
@@ -317,6 +255,7 @@
                     "לחיצה על כפתור המידע (i) ליד איש הקשר.",
                     "בחירה באפשרות המתאימה לכם: הודעת וואטסאפ, שיחה קולית או שיחת וידאו [2]."
                 ],
+                tags: ["לדבר", "להתקשר", "טלפון", "וידאו", "שיחת וידאו", "לכתוב", "צ'אט", "אנשי קשר", "חברים", "הודעות", "שליחה"],
                 icon: "message-square"
             },
             {
@@ -328,6 +267,7 @@
                     "מדברים בחופשיות.",
                     "בסיום, לוחצים על החץ הירוק כדי לשלוח את ההודעה [3]."
                 ],
+                tags: ["להקליט", "לדבר", "דיבור", "קול", "שמע", "מיקרופון", "מנעול", "לא רוצה להקליד", "שמע", "אודיו", "audio", "voice"],
                 icon: "mic"
             },
             {
@@ -339,6 +279,7 @@
                     "לחיצה על סמל השיתוף (נראה כמו שלוש נקודות מחוברות בקווים או ריבוע עם חץ עולה).",
                     "בחירת איש הקשר הרצוי מתוך אפליקציית הוואטסאפ שלכם [4]."
                 ],
+                tags: ["צילום", "גלריה", "תמונות", "פוטו", "photo", "image", "לשתף תמונה", "מצלמה", "שלח תמונה"],
                 icon: "image"
             },
             {
@@ -346,11 +287,12 @@
                 question: "איך משתפים מיקום בוואטסאפ?",
                 steps: [
                     "ודאו שה-GPS (שירותי המיקום) מופעל במכשיר שלכם דרך סרגל ההגדרות העליון.",
-                    "בתוך חלון השיחה עם האדם שרוצים לשתף, לחצו על סמל הסיכה (בסרגל שליחת ההודעות).",
+                    "בתוך חלון השיחה WITH האדם שרוצים לשתף, לחצו על סמל הסיכה (בסרגל שליחת ההודעות).",
                     "בחרו באייקון המיקום (אייקון של סיכת מפה ירוקה).",
                     "לחצו על שיתוף מיקום [5]."
                 ],
-                icon: "map-pin"
+                icon: "map-pin",
+                tags: ["איפה אני", "מפה", "ניווט", "גיפיאס", "gps", "איפה אתה", "למצוא אותי", "סיכה", "מיקום בזמן אמת"]
             },
             {
                 id: "wa-6",
@@ -360,7 +302,8 @@
                     "לחצו על סמל פח האשפה המופיע בתפריט העליון של המסך.",
                     "בחרו באפשרות 'מחק אצל כולם' (בתוך פרק זמן מוגדר מהשליחה) [3]."
                 ],
-                icon: "trash-2"
+                icon: "trash-2",
+                tags: ["טעיתי", "טעות", "למחוק", "פח אשפה", "ביטול שלחה", "מחיקה", "התחרטתי"]
             },
             {
                 id: "wa-7",
@@ -371,7 +314,8 @@
                     "צרפו לפחות שני אנשים על ידי לחיצה על שמם.",
                     "לחצו על החץ הירוק לסיום ויצירת הרשימה [6, 7]."
                 ],
-                icon: "users"
+                icon: "users",
+                tags: ["קבוצה", "חג שמח", "שנה טובה", "הרבה אנשים ביחד", "הודעה המונית", "לכולם", "תפוצה", "ברכה לכולם"]
             },
             {
                 id: "wa-8",
@@ -383,7 +327,8 @@
                     "תקנו את הטקסט בתיבת ההודעה.",
                     "לחצו על סמל ה-V הירוק לאישור השינוי."
                 ],
-                icon: "edit-3"
+                icon: "edit-3",
+                tags: ["תיקון שגיאות", "שינוי טקסט", "טעיתי בכתיבה", "לתקן הודעה", "לשנות", "עריכה"]
             },
             {
                 id: "wa-9",
@@ -394,7 +339,8 @@
                     "בחרו ב-'הוסף קיצור דרך לצ'אט'.",
                     "לחצו על 'הוסף באופן אוטומטי' כדי ליצור סמל מהיר ישירות על מסך הבית [6]."
                 ],
-                icon: "external-link"
+                icon: "external-link",
+                tags: ["גישה מהירה", "מסך הבית", "סמל על המסך", "חיוג מהיר", "איש קשר מועדף", "קיצור"]
             }
         ];
 
@@ -406,7 +352,8 @@
                     "באנדרואיד: פתחו את חנות Google Play > הקלידו את השם בחיפוש > ודאו שהתוצאה אינה ממומנת > לחצו התקנה [9].",
                     "באייפון: פתחו את App Store > לחצו על חיפוש (זכוכית מגדלת) > הקלידו שם האפליקציה > לחצו על הורדה או סמל הענן [10]."
                 ],
-                icon: "download-cloud"
+                icon: "download-cloud",
+                tags: ["תוכנות", "להוריד משחק", "חנות", "גוגל פליי", "אפסטור", "אפליקציה", "יישומונים", "התקנה", "download", "app"]
             },
             {
                 id: "sp-2",
@@ -415,7 +362,8 @@
                     "לשמירה: פתחו את אפליקציית 'אנשי קשר' > לחצו על הוספת איש קשר חדש (+) > הקלידו שם, תיאור ומספר טלפון > שמירה או V [11].",
                     "לעריכה: כנסו לפרטי איש הקשר הרצוי > לחצו על 'עריכה' (סמל העיפרון) > עדכנו את הפרטים > לחצו שמירה או V [12]."
                 ],
-                icon: "user-cog"
+                icon: "user-cog",
+                tags: ["ספר טלפונים", "מספר חדש", "להוסיף חבר", "שנות שם", "טלפונים", "אנשי קשר", "זיכרון", "לשמור"]
             },
             {
                 id: "sp-3",
@@ -427,7 +375,8 @@
                     "הקלידו את הסיסמה המדויקת של הרשת.",
                     "לחצו על 'התחבר' [13]."
                 ],
-                icon: "wifi"
+                icon: "wifi",
+                tags: ["אינטרנט בבית", "וויפי", "רשת", "ראוטר", "לא עובד האינטרנט", "גלישה", "חיבור אלחוטי", "wifi"]
             },
             {
                 id: "sp-4",
@@ -437,7 +386,8 @@
                     "לאיפוס: ודאו שהסוללה טעונה מעל 70% וחברו את הטלפון לחשמל ואינטרנט.",
                     "חפשו 'איפוס' או 'שחזור הגדרות יצרן' בהגדרות המכשיר ובצעו את השלבים לאישור המחיקה [15]."
                 ],
-                icon: "refresh-cw"
+                icon: "refresh-cw",
+                tags: ["מחיקת הכל", "ניקוי טלפון", "גיבוי תמונות", "לשמור נתונים", "למכור את הטלפון", "פורמט", "אנשי קשר אבדו", "שחזור"]
             },
             {
                 id: "sp-5",
@@ -448,7 +398,8 @@
                     "לחצו על 'הוספת חשבון' ובחרו ב-'Google'.",
                     "עקבו אחר ההוראות המופיעות במסך והזינו את המייל והסיסמה שלכם [16]."
                 ],
-                icon: "mail"
+                icon: "mail",
+                tags: ["מייל", "ג'ימייל", "gmail", "חשבון", "גוגל", "google", "סנכרון", "דואר אלקטרוני"]
             },
             {
                 id: "sp-6",
@@ -457,7 +408,8 @@
                     "באייפון: כנסו אל הגדרות > כללי > שפה ואזור > הוספת שפה > בחרו עברית > אשרו את השפה כראשית [17].",
                     "באנדרואיד: הגדרות > ניהול כללי (או מערכת) > שפה וקלט > שפה > הוספת שפה > בחרו עברית וגררו אותה לראש הרשימה."
                 ],
-                icon: "languages"
+                icon: "languages",
+                tags: ["שפות", "אנגלית", "הכל באנגלית", "עברית", "עריכת שפה", "תרגום", "hebrew", "language"]
             },
             {
                 id: "sp-7",
@@ -468,7 +420,8 @@
                     "הזינו את קוד הגישה האישי של המכשיר שלכם.",
                     "לחצו על 'הגדרת זיהוי פנים' ועקבו אחר ההנחיות במסך לסריקה מלאה של הפנים [18]."
                 ],
-                icon: "smile"
+                icon: "smile",
+                tags: ["פנים", "פתיחת נעילה", "אבטחה", "פייס איידי", "face id", "נעילת מסך", "מצלמה מזהה"]
             },
             {
                 id: "sp-8",
@@ -480,7 +433,8 @@
                     "לחצו על 'הוספת טביעת אצבע'.",
                     "הניחו את האצבע על כפתור הבית והרימו אותה לפי ההוראות עד להשלמת הסריקה [18]."
                 ],
-                icon: "fingerprint"
+                icon: "fingerprint",
+                tags: ["אצבע", "טאץ איידי", "touch id", "כפתור הבית", "נעילה", "סיסמה אצבע"]
             },
             {
                 id: "sp-9",
@@ -490,7 +444,8 @@
                     "בחרו את איש הקשר הרצוי איתו תרצו לשוחח.",
                     "לחצו על סמל הווידאו (או על סמל הטלפון לשיחה קולית) כדי להתחיל בשיחה [19]."
                 ],
-                icon: "video"
+                icon: "video",
+                tags: ["שיחת וידאו באפל", "פייסטיים", "facetime", "לראות את הנכדים", "שיחה מצולמת", "אייפון לאייפון"]
             },
             {
                 id: "sp-10",
@@ -499,7 +454,8 @@
                     "באייפון: אפליקציית הטלפון > לשונית 'האחרונים' > לחיצה על סמל ה-(i) ליד המספר הלא רצוי > גלילה מטה וחסימת איש קשר [18, 20].",
                     "באנדרואיד: אפליקציית הטלפון > לשונית 'אחרונים' > לחיצה ארוכה על המספר > בחירה באפשרות 'חסימה' או 'דיווח על ספאם' [21]."
                 ],
-                icon: "shield-alert"
+                icon: "shield-alert",
+                tags: ["מציקים לי", "פרסומות", "חסימה", "לחסום מספר", "ספאם", "שיחות אוטומטיות", "נוכלים בטלפון", "הטרדה"]
             },
             {
                 id: "sp-11",
@@ -510,7 +466,8 @@
                     "הפעילו או כבו את מתג העדכונים (Allow Notifications).",
                     "בחרו את סגנון ההתראה הרצוי והגדירו אם ברצונכם להשמיע צליל [17]."
                 ],
-                icon: "bell"
+                icon: "bell",
+                tags: ["צלצולים", "הודעות קופצות", "רעש", "השתקה", "התראות", "עדכונים", "באנר"]
             },
             {
                 id: "sp-12",
@@ -521,7 +478,8 @@
                     "הפעילו או כבו את מתג ההתראות הראשי.",
                     "קבעו את סוג ההתראה (צליל, רטט או התראה שקטה)."
                 ],
-                icon: "bell-ring"
+                icon: "bell-ring",
+                tags: ["השתקת טלפון", "רעש מהרשת", "הודעות קופצות באנדרואיד", "צלילים", "ווליום"]
             },
             {
                 id: "sp-13",
@@ -531,7 +489,8 @@
                     "התאמה אישית של הטלפון עם ווידג'טים שימושיים וצלצולים ייחודיים.",
                     "טכניקות לצילום תמונות וסרטונים באיכות גבוהה במצלמה [22]."
                 ],
-                icon: "book-open"
+                icon: "book-open",
+                tags: ["ספר הדרכה", "מדריך אפל", "עזרה באייפון", "למידה", "ווידג'טים"]
             },
             {
                 id: "sp-14",
@@ -542,7 +501,8 @@
                     "שיתוף מיקום בזמן אמת ונתוני בריאות חשובים.",
                     "בחירת איש קשר משפחתי אמין לצורך שחזור קוד גישה שנשכח [23]."
                 ],
-                icon: "users-round"
+                icon: "users-round",
+                tags: ["ילדים", "שיתוף מיקום משפחה", "אשראי משותף", "שחזור סיסמה", "אפל משפחה"]
             },
             {
                 id: "sp-15",
@@ -553,11 +513,11 @@
                     "הגדרת תזכורות קוליות למשימות, פגישות ואירועים חשובים.",
                     "הגדרת נעילה אוטומטית ומאובטחת לדלת הבית שלכם [24]."
                 ],
-                icon: "activity"
+                icon: "activity",
+                tags: ["ניווט", "תשלום בטלפון", "ארנק דיגיטלי", "אפל פיי", "תזכורת", "שעון מעורר", "נעילת דלת"]
             }
         ];
 
-        // NEW: Scams & Online Safety Guide Data
         const scamsData = [
             {
                 id: "sc-1",
@@ -565,10 +525,11 @@
                 steps: [
                     "<strong>זיהוי הבעיה:</strong> קיבלתם הודעה בסגנון 'מזל טוב, זכית באייפון 15 חינם!' או 'השתתפו בסקר קצר וקבלו שובר של 500 ש\"ח לשופרסל'.",
                     "<strong>סממני אזהרה:</strong> האתר מבקש לשתף את הקישור עם 5-10 חברים בוואטסאפ 'כדי לשחרר את המתנה'.",
-                    "<strong>המלכודת:</strong> לאחר השיתוף, תתבקשו להזין את פרטי האשראי שלכם כביכול רק לצורך 'תשלום דמי משלוח סמליים' בסך 5 שקלים. ברגע שתזינו, הנוכלים יחייבו אתכם בסכומים גבוהים בהרבה.",
+                    "<strong>המלכודת:</strong> לאחר השיתוף, תתבקשו להזין את פרטי אשראי שלכם כביכול רק לצורך 'תשלום דמי משלוח סמליים' בסך 5 שקלים. ברגע שתזינו, הנוכלים יחייבו אתכם בסכומים גבוהים בהרבה.",
                     "<strong>כיצד לפעול:</strong> סגרו מיד את הדפדפן. זכרו: חברות גדולות לא מחלקות מתנות יקרות ערך דרך הודעות וואטסאפ אקראיות."
                 ],
-                icon: "gift"
+                icon: "gift",
+                tags: ["הגרלה", "זכייה", "מתנה חינם", "שופרסל מתנות", "פרס", "כסף קל", "הודעה חשודה", "עוקץ", "רמאות", "סקר נושא פרסים"]
             },
             {
                 id: "sc-2",
@@ -579,7 +540,8 @@
                     "<strong>המלכודת:</strong> הקישור מוביל לאתר מזויף שנראה זהה לחלוטין לאתר הדואר או המשטרה, במטרה לגנוב את פרטי כרטיס האשראי ותעודת הזהות שלכם.",
                     "<strong>כיצד לפעול:</strong> אל תלחצו על הקישור בשום אופן. כנסו עצמאית לאתר הרשמי של הגוף (למשל, הזינו 'דואר ישראל' ישירות בגוגל) ובדקו באזור האישי שלכם האם באמת יש חבילה או חוב."
                 ],
-                icon: "file-warning"
+                icon: "file-warning",
+                tags: ["קנס", "דוח חניה", "משטרה", "חוב", "דואר ישראל", "חבילה מעוכבת", "חשבון חשמל", "ניתוק", "איום", "דחיפות", "הודעה מפחידה", "sms", "אס אם אס"]
             },
             {
                 id: "sc-3",
@@ -590,7 +552,8 @@
                     "<strong>זהירות מקישורים מקוצרים:</strong> קישורים קצרים המתחילים ב-<code>bit.ly</code>, <code>tinyurl.com</code> או <code>t.co</code> נועדו להסתיר את היעד האמיתי של האתר. אל תלחצו עליהם אלא אם אתם בוטחים במוסר במאה אחוז.",
                     "<strong>המכשיר מבקש אישור הורדה?</strong> אם לאחר לחיצה על קישור מופיעה התרעה בסמארטפון שהאתר מנסה להוריד קובץ (במיוחד קבצים בסיומת <code>.apk</code>) - בטלו מיד! זהו וירוס שמנסה להשתלט לכם על המכשיר."
                 ],
-                icon: "link-2"
+                icon: "link-2",
+                tags: ["לינק מסוכן", "פישינג", "אתר מזויף", "וירוס", "קישור קצר", "כתובת מוזרה", "שגיאות כתיב", "הורדת קובץ", "apk", "חטיפת נתונים"]
             },
             {
                 id: "sc-4",
@@ -601,32 +564,29 @@
                     "<strong>זיהוי הבעיה ב' (חטיפת חשבון):</strong> חבר או קרוב משפחה שולח הודעה: 'שלחתי לך בטעות קוד בן 6 ספרות ב-SMS, תוכל להקריא לי אותו?'.",
                     "<strong>המלכודת:</strong> קוד זה הוא קוד ההתקנה של הוואטסאפ *שלכם*. אם תקריאו להם אותו, הנוכלים ישתלטו לכם על החשבון וינעלו אתכם בחוץ. לעולם אל תשתפו קוד המגיע אליכם ב-SMS."
                 ],
-                icon: "user-x"
+                icon: "user-x",
+                tags: ["התחזות", "העברת כסף", "הבן שלי", "נשבר הטלפון", "קוד סודי", "חטיפת וואטסאפ", "פריצה", "נוכל בוואטסאפ", "הודעה מהבת"]
             },
             {
                 id: "sc-5",
-                question: "כללי הזהב להתנהלות בטוחה ברשת",
+                question: "כללי הברזל והזהב להתנהלות בטוחה ברשת",
                 steps: [
                     "<strong>לעולם אל תמסרו פרטים רגישים:</strong> בנק, דואר ישראל, או חברות תקשורת לעולם לא יבקשו מכם סיסמאות או קוד אימות חד-פעמי בשיחה או ב-SMS.",
                     "<strong>הפעילו 'אימות דו-שלבי' בוואטסאפ:</strong> בהגדרות וואטסאפ > חשבון > אימות דו-שלבי. הגדירו קוד סודי אישי. הגדרה זו תמנע מנוכלים לחטוף את החשבון שלכם גם אם השיגו את קוד ה-SMS.",
                     "<strong>התייעצו עם קרובים:</strong> מרגישים שמשהו 'מוזר' או מלחיץ בהודעה שקיבלתם? צלמו מסך ושלחו לילד, לנכד או לחבר שמבינים קצת יותר ברשת. עין נוספת תמיד מצילה מהונאה."
                 ],
-                icon: "shield-check"
+                icon: "shield-check",
+                tags: ["הגנה", "אימות דו שלבי", "סיסמה סודית", "מניעה", "מערך הסייבר", "ביטחון", "זהירות", "כללי זהב"]
             }
         ];
 
         let activeTab = 'whatsapp';
         let isWarmLight = false;
 
-        // Render card helpers
         function generateCardHtml(item, index, sectionName) {
-            // Adjust card design based on section
             let iconBgClass = "bg-calm-50 text-calm-600 border-calm-100";
-            if (sectionName === 'scams') {
-                iconBgClass = "bg-guard-50 text-guard-600 border-guard-100";
-            } else if (sectionName === 'smartphone') {
-                iconBgClass = "bg-ocean-50 text-ocean-600 border-ocean-100";
-            }
+            if (sectionName === 'scams') iconBgClass = "bg-guard-50 text-guard-600 border-guard-100";
+            else if (sectionName === 'smartphone') iconBgClass = "bg-ocean-50 text-ocean-600 border-ocean-100";
 
             return `
                 <div class="hover-card bg-white rounded-2xl border border-calm-100 shadow-sm overflow-hidden transition-all duration-300" id="card-${item.id}">
@@ -651,7 +611,7 @@
                             <ol class="space-y-3.5">
                                 ${item.steps.map((step, sIdx) => `
                                     <li class="flex items-start gap-3 bg-white p-3 rounded-xl border border-slate-100 shadow-sm hover:border-calm-200 transition-colors cursor-pointer" onclick="toggleStep('${item.id}', ${sIdx})">
-                                        <div class="w-6 h-6 rounded-full border-2 border-calm-200 flex items-center justify-center flex-shrink-0 mt-0.5 text-xs font-bold transition-all" id="checkbox-${item.id}-${sIdx}">
+                                        <div class="w-6 h-6 rounded-full border-2 border-slate-200 flex items-center justify-center flex-shrink-0 mt-0.5 text-xs font-bold transition-all text-slate-500" id="checkbox-${item.id}-${sIdx}">
                                             ${sIdx + 1}
                                         </div>
                                         <span class="text-slate-700 text-sm md:text-[15px] font-medium leading-relaxed" id="text-${item.id}-${sIdx}">
@@ -666,61 +626,38 @@
             `;
         }
 
-        // Render cards inside container
         function renderAllCards() {
-            const waContainer = document.getElementById('wa-cards-container');
-            const smartContainer = document.getElementById('smart-cards-container');
-            const scamsContainer = document.getElementById('scams-cards-container');
-
-            waContainer.innerHTML = whatsappData.map((item, index) => generateCardHtml(item, index, 'whatsapp')).join('');
-            smartContainer.innerHTML = smartphoneData.map((item, index) => generateCardHtml(item, index, 'smartphone')).join('');
-            scamsContainer.innerHTML = scamsData.map((item, index) => generateCardHtml(item, index, 'scams')).join('');
-
+            document.getElementById('wa-cards-container').innerHTML = whatsappData.map((item, index) => generateCardHtml(item, index, 'whatsapp')).join('');
+            document.getElementById('smart-cards-container').innerHTML = smartphoneData.map((item, index) => generateCardHtml(item, index, 'smartphone')).join('');
+            document.getElementById('scams-cards-container').innerHTML = scamsData.map((item, index) => generateCardHtml(item, index, 'scams')).join('');
             lucide.createIcons();
         }
 
-        // Switch active tab
         function switchTab(tab) {
             activeTab = tab;
-            const tabWa = document.getElementById('tab-whatsapp');
-            const tabSmart = document.getElementById('tab-smartphone');
-            const tabScams = document.getElementById('tab-scams');
+            const tWa = document.getElementById('tab-whatsapp'), tSmart = document.getElementById('tab-smartphone'), tScams = document.getElementById('tab-scams');
+            const sWa = document.getElementById('section-whatsapp'), sSmart = document.getElementById('section-smartphone'), sScams = document.getElementById('section-scams');
 
-            const secWa = document.getElementById('section-whatsapp');
-            const secSmart = document.getElementById('section-smartphone');
-            const secScams = document.getElementById('section-scams');
-
-            // Reset tab styles
-            tabWa.className = "flex-1 lg:flex-initial flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-xs md:text-sm font-bold transition-all text-slate-500 hover:text-slate-800";
-            tabSmart.className = "flex-1 lg:flex-initial flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-xs md:text-sm font-bold transition-all text-slate-500 hover:text-slate-800";
-            tabScams.className = "flex-1 lg:flex-initial flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-xs md:text-sm font-bold transition-all text-slate-500 hover:text-slate-800";
-
-            secWa.classList.add('hidden');
-            secSmart.classList.add('hidden');
-            secScams.classList.add('hidden');
+            tWa.className = tSmart.className = tScams.className = "flex-1 lg:flex-initial flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-xs md:text-sm font-bold transition-all text-slate-500 hover:text-slate-800";
+            sWa.classList.add('hidden'); sSmart.classList.add('hidden'); sScams.classList.add('hidden');
 
             if (tab === 'whatsapp') {
-                tabWa.className = "flex-1 lg:flex-initial flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-xs md:text-sm font-bold transition-all text-calm-700 bg-white shadow-sm";
-                secWa.classList.remove('hidden');
+                tWa.className = "flex-1 lg:flex-initial flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-xs md:text-sm font-bold transition-all text-calm-700 bg-white shadow-sm";
+                sWa.classList.remove('hidden');
             } else if (tab === 'smartphone') {
-                tabSmart.className = "flex-1 lg:flex-initial flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-xs md:text-sm font-bold transition-all text-ocean-700 bg-white shadow-sm";
-                secSmart.classList.remove('hidden');
+                tSmart.className = "flex-1 lg:flex-initial flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-xs md:text-sm font-bold transition-all text-ocean-700 bg-white shadow-sm";
+                sSmart.classList.remove('hidden');
             } else if (tab === 'scams') {
-                tabScams.className = "flex-1 lg:flex-initial flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-xs md:text-sm font-bold transition-all text-rose-700 bg-white shadow-sm border border-red-100";
-                secScams.classList.remove('hidden');
+                tScams.className = "flex-1 lg:flex-initial flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-xs md:text-sm font-bold transition-all text-rose-700 bg-white shadow-sm border border-red-100";
+                sScams.classList.remove('hidden');
             }
-            
-            // Clear search when switching tabs to avoid confusion
             clearSearch();
         }
 
-        // Expand/Collapse Question
         function toggleAccordion(id) {
             const content = document.getElementById(`content-${id}`);
             const arrow = document.getElementById(`arrow-${id}`);
-            const isClosing = content.classList.contains('open');
-
-            if (isClosing) {
+            if (content.classList.contains('open')) {
                 content.classList.remove('open');
                 arrow.style.transform = "rotate(0deg)";
             } else {
@@ -729,99 +666,84 @@
             }
         }
 
-        // Step checker action
         function toggleStep(cardId, stepIndex) {
             const checkbox = document.getElementById(`checkbox-${cardId}-${stepIndex}`);
             const text = document.getElementById(`text-${cardId}-${stepIndex}`);
+            const isScam = cardId.startsWith('sc-'), isSp = cardId.startsWith('sp-');
             
-            // Check current theme state to apply correct color (greenish or reddish/blueish)
-            const isScam = cardId.startsWith('sc-');
-            const isSp = cardId.startsWith('sp-');
-            
-            let activeColorClass = 'bg-calm-600 border-calm-600';
-            if (isScam) activeColorClass = 'bg-guard-600 border-guard-600';
-            else if (isSp) activeColorClass = 'bg-ocean-600 border-ocean-600';
+            let cl = 'bg-calm-600 border-calm-600';
+            if (isScam) cl = 'bg-guard-600 border-guard-600';
+            else if (isSp) cl = 'bg-ocean-600 border-ocean-600';
 
-            const isCompleted = checkbox.classList.contains('bg-calm-600') || checkbox.classList.contains('bg-guard-600') || checkbox.classList.contains('bg-ocean-600');
+            const isComp = checkbox.classList.contains('bg-calm-600') || checkbox.classList.contains('bg-guard-600') || checkbox.classList.contains('bg-ocean-600');
 
-            if (isCompleted) {
-                // Revert to number
+            if (isComp) {
                 checkbox.className = "w-6 h-6 rounded-full border-2 border-slate-200 flex items-center justify-center flex-shrink-0 mt-0.5 text-xs font-bold transition-all text-slate-500";
                 checkbox.innerHTML = `${stepIndex + 1}`;
                 text.classList.remove('line-through', 'text-slate-400');
-                text.classList.add('text-slate-700');
             } else {
-                // Set to green/red checkmark
-                checkbox.className = `w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0 mt-0.5 text-xs text-white transition-all ${activeColorClass}`;
+                checkbox.className = `w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0 mt-0.5 text-xs text-white transition-all ${cl}`;
                 checkbox.innerHTML = `<i data-lucide="check" class="w-3.5 h-3.5"></i>`;
                 text.classList.add('line-through', 'text-slate-400');
-                text.classList.remove('text-slate-700');
                 lucide.createIcons();
             }
         }
 
-        // Search algorithm (searches WhatsApp, Smartphone, and Scams)
         function handleSearch() {
             const query = document.getElementById('searchInput').value.trim().toLowerCase();
             const searchIndicator = document.getElementById('searchIndicator');
             const resultsCountEl = document.getElementById('resultsCount');
             const noResultsState = document.getElementById('noResultsState');
 
-            const allCards = document.querySelectorAll('[id^="card-"]');
+            const sections = [
+                { data: whatsappData, name: 'whatsapp' },
+                { data: smartphoneData, name: 'smartphone' },
+                { data: scamsData, name: 'scams' }
+            ];
             
             if (query === "") {
                 searchIndicator.classList.add('hidden');
                 noResultsState.classList.add('hidden');
-                allCards.forEach(card => card.classList.remove('hidden'));
+                switchTab(activeTab);
                 return;
             }
 
-            let foundCount = 0;
+            document.getElementById('section-whatsapp').classList.remove('hidden');
+            document.getElementById('section-smartphone').classList.remove('hidden');
+            document.getElementById('section-scams').classList.remove('hidden');
 
-            // Helper to check match
-            const checkMatch = (item) => {
-                return item.question.toLowerCase().includes(query) || 
-                       item.steps.some(step => step.toLowerCase().includes(query));
-            };
+            let totalFound = 0;
 
-            // Search WhatsApp
-            whatsappData.forEach(item => {
-                const card = document.getElementById(`card-${item.id}`);
-                if (checkMatch(item)) {
-                    card.classList.remove('hidden');
-                    foundCount++;
+            sections.forEach(sec => {
+                let foundInSec = 0;
+                sec.data.forEach(item => {
+                    const card = document.getElementById(`card-${item.id}`);
+                    
+                    const inQuestion = item.question.toLowerCase().includes(query);
+                    const inSteps = item.steps.some(s => s.toLowerCase().includes(query));
+                    const inTags = item.tags && item.tags.some(t => t.toLowerCase().includes(query));
+
+                    if (inQuestion || inSteps || inTags) {
+                        card.classList.remove('hidden');
+                        foundInSec++;
+                        totalFound++;
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+
+                const secHeader = document.getElementById(`section-${sec.name}`);
+                if (foundInSec === 0) {
+                    secHeader.classList.add('hidden');
                 } else {
-                    card.classList.add('hidden');
+                    secHeader.classList.remove('hidden');
                 }
             });
 
-            // Search Smartphone
-            smartphoneData.forEach(item => {
-                const card = document.getElementById(`card-${item.id}`);
-                if (checkMatch(item)) {
-                    card.classList.remove('hidden');
-                    foundCount++;
-                } else {
-                    card.classList.add('hidden');
-                }
-            });
-
-            // Search Scams
-            scamsData.forEach(item => {
-                const card = document.getElementById(`card-${item.id}`);
-                if (checkMatch(item)) {
-                    card.classList.remove('hidden');
-                    foundCount++;
-                } else {
-                    card.classList.add('hidden');
-                }
-            });
-
-            // Update UI search banner
             searchIndicator.classList.remove('hidden');
-            resultsCountEl.innerText = foundCount;
+            resultsCountEl.innerText = totalFound;
 
-            if (foundCount === 0) {
+            if (totalFound === 0) {
                 noResultsState.classList.remove('hidden');
             } else {
                 noResultsState.classList.add('hidden');
@@ -833,7 +755,6 @@
             handleSearch();
         }
 
-        // Accessibility Adjust Font Size
         let currentFontScale = 16; 
         function changeFontSize(direction) {
             currentFontScale += direction * 2;
@@ -842,36 +763,24 @@
             document.documentElement.style.fontSize = `${currentFontScale}px`;
         }
 
-        // Warm light mode toggle
         function toggleWarmMode() {
             isWarmLight = !isWarmLight;
-            const body = document.body;
-            const warmBtn = document.getElementById('warmBtn');
-
+            const body = document.body, warmBtn = document.getElementById('warmBtn');
             if (isWarmLight) {
                 body.style.backgroundColor = "#faf6e8";
-                warmBtn.innerHTML = `
-                    <i data-lucide="eye-off" class="w-4 h-4"></i>
-                    <span>מצב תאורה רגיל</span>
-                `;
+                warmBtn.innerHTML = `<i data-lucide="eye-off" class="w-4 h-4"></i><span>מצב תאורה רגיל</span>`;
                 warmBtn.className = "flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-100 text-slate-800 border border-slate-200 hover:bg-slate-200 transition-colors";
             } else {
                 body.style.backgroundColor = "#f4f7f6";
-                warmBtn.innerHTML = `
-                    <i data-lucide="eye" class="w-4 h-4"></i>
-                    <span>מצב תאורה רכה</span>
-                `;
+                warmBtn.innerHTML = `<i data-lucide="eye" class="w-4 h-4"></i><span>מצב תאורה רכה</span>`;
                 warmBtn.className = "flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-amber-50 text-amber-800 border border-amber-200/50 hover:bg-amber-100 transition-colors";
             }
             lucide.createIcons();
         }
 
-        // Initial setup on load
         window.onload = function () {
             renderAllCards();
         }
     </script>
 </body>
 </html>
-
-```
