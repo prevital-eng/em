@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Assistant:wght=300;400;600;700;800&display=swap" rel="stylesheet">
     <style>
         * { box-sizing: border-box; }
-        body { font-family: 'Assistant', sans-serif; background: #F0FAF5; -webkit-tap-highlight-color: transparent; margin: 0; }
+        body { font-family: 'Assistant', sans-serif; background: #F0FAF5; -webkit-tap-highlight-color: transparent; margin: 0; padding: 0; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         .step-fade { animation: fadeIn 0.2s ease; }
@@ -28,10 +28,10 @@
     const { useState, useMemo } = React;
 
     const ICONS = {
-        basics: () => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-6 h-6 text-indigo-600"><rect x="5" y="2" width="14" height="20" rx="2" ry="2" /><line x1="12" y1="18" x2="12.01" y2="18" strokeWidth="3" /></svg>,
-        whatsapp: () => <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6"><path d="M12 2C6.48 2 2 6.48 2 12c0 2.17.63 4.19 1.73 5.89L2.1 21.9l4.13-1.57C7.86 21.39 9.85 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2z" fill="#128C7E"/><path d="M16.5 13.75c-.25-.13-1.5-.74-1.73-.83-.23-.08-.39-.13-.56.13-.16.25-.64.83-.79.99-.15.16-.3.18-.55.05a6.97 6.97 0 0 1-2.04-1.26 7.64 7.64 0 0 1-1.41-1.75c-.15-.25-.02-.39.11-.51.12-.11.25-.29.38-.44.13-.15.17-.25.26-.41.09-.16.05-.3-.02-.44-.06-.13-.56-1.35-.77-1.83-.2-.5-.41-.43-.56-.43h-.48c-.16 0-.43.06-.66.31-.22.25-.85.83-.85 2.03s.87 2.35.99 2.51c.12.16 1.7 2.6 4.12 3.65.58.25 1.03.4 1.38.51.58.18 1.11.16 1.53.1.47-.07 1.5-.61 1.71-1.2.21-.59.21-.11-.22-.18-.47-.31z" fill="white"/></svg>,
-        zoom: () => <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6"><rect x="2" y="4" width="20" height="16" rx="4" fill="#2D8CFF" /><path d="M6 9h6v6H6z" fill="white"/><path d="M14 10.5l4-3v9l-4-3z" fill="white" stroke="white" strokeWidth="1"/></svg>,
-        links: () => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-6 h-6 text-teal-600"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" /></svg>
+        basics: () => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-5 h-5 text-indigo-600"><rect x="5" y="2" width="14" height="20" rx="2" ry="2" /><line x1="12" y1="18" x2="12.01" y2="18" strokeWidth="3" /></svg>,
+        whatsapp: () => <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5"><path d="M12 2C6.48 2 2 6.48 2 12c0 2.17.63 4.19 1.73 5.89L2.1 21.9l4.13-1.57C7.86 21.39 9.85 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2z" fill="#128C7E"/><path d="M16.5 13.75c-.25-.13-1.5-.74-1.73-.83-.23-.08-.39-.13-.56.13-.16.25-.64.83-.79.99-.15.16-.3.18-.55.05a6.97 6.97 0 0 1-2.04-1.26 7.64 7.64 0 0 1-1.41-1.75c-.15-.25-.02-.39.11-.51.12-.11.25-.29.38-.44.13-.15.17-.25.26-.41.09-.16.05-.3-.02-.44-.06-.13-.56-1.35-.77-1.83-.2-.5-.41-.43-.56-.43h-.48c-.16 0-.43.06-.66.31-.22.25-.85.83-.85 2.03s.87 2.35.99 2.51c.12.16 1.7 2.6 4.12 3.65.58.25 1.03.4 1.38.51.58.18 1.11.16 1.53.1.47-.07 1.5-.61 1.71-1.2.21-.59.21-.11-.22-.18-.47-.31z" fill="white"/></svg>,
+        zoom: () => <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5"><rect x="2" y="4" width="20" height="16" rx="4" fill="#2D8CFF" /><path d="M6 9h6v6H6z" fill="white"/><path d="M14 10.5l4-3v9l-4-3z" fill="white" stroke="white" strokeWidth="1"/></svg>,
+        links: () => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-5 h-5 text-teal-600"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" /></svg>
     };
 
     const CATS = [
@@ -42,11 +42,11 @@
     ];
 
     const guidesData = [
-        {id:"bas-3",category:"basics",title:"איך מבצעים שיחת טלפון רגילה?",steps:["פתחו את אפליקציית הטלפון (סמל שפופרת ירוקה או כחולה).","לחצו על סמל לוח החיוג (ריבוע עם נקודות) כדי לפתוח את המקלדת המספרית.","הקלידו את מספר הטלפון המלא כולל קידומת (050, 052 וכו').","לחצו על כפתור החיוג הירוק להתחלת השיחה, ועל הכפתור האדום לסיום."]},
-        {id:"bas-12",category:"basics",title:"הסמלים הקטנים בסרגל העליון ופתיחת הווילון",steps:["החליקו את האצבע מהחלק העליון ביותר של המסך כלפי מטה כדי לפתוח את וילון ההגדרות המהירות (שימו לב: הווילון נפתח תמיד בגרירה ישירה מלמעלה למטה, ולא באמצעות לחיצה על שלוש נקודות).","📶 Wi-Fi (גלים או פסים) — פסים מלאים = מחוברים לאינטרנט. פסים חצויים או ✕ = אין חיבור. חיצים 5G/4G = רשת סלולרית.","🔋 סוללה — ירוק = תקין. כתום = מתחת ל-30%. אדום = מתחת ל-10%, טעינה דחופה! ⚡ ברק = הטלפון בטעינה.","🔕 פעמון עם קו = מצב שקט. 🌙 ירח = נא לא להפריע. ✈️ מטוס = מצב טיסה, ללא קליטה כלל."]},
-        {id:"wa-11",category:"whatsapp",title:"איך שולחים מיקום נוכחי ובזמן אמת (מעקב)?",steps:["ודאו שרכיב המיקום (GPS) מופעל בטלפון שלכם (דרך וילון ההגדרות העליון שנפתח בגרירה מטה).","היכנסו לשיחה של האדם שברצונכם לשלוח לו את המיקום בוואטסאפ.","לחצו על סמל הסיכה (📎) או סמל הפלוס (+) שליד שורת כתיבת ההודעה.","בחרו באפשרות 'מיקום' (סמל של סיכה עגולה על גבי מפה).","לשליחת נקודה קבועה ברגע זה: לחצו על 'שלח את מיקומך הנוכחי' (האדם השני יראה בדיוק היכן הייתם כששלחתם והסימון לא ישתנה גם אם תזוזו).","לשיתוף בזמן אמת (מעקב בתנועה): לחצו על 'שתף מיקום בזמן אמת', בחרו את משך הזמן (למשל: שעה אחת) ולחצו על חץ השליחה. המיקום שלכם יתעדכן על המפה של האחר גם כשאתם זזים!"]},
+        {id:"bas-1",category:"basics",title:"איך מבצעים שיחת טלפון רגילה?",steps:["פתחו את אפליקציית הטלפון (סמל שפופרת ירוקה או כחולה).","לחצו על סמל לוח החיוג (ריבוע עם נקודות) כדי לפתוח את המקלדת המספרית.","הקלידו את מספר הטלפון המלא כולל קידומת (050, 052 וכו').","לחצו על כפתור החיוג הירוק להתחלת השיחה, ועל הכפתור האדום לסיום."]},
+        {id:"bas-2",category:"basics",title:"הסמלים הקטנים בסרגל העליון ופתיחת הווילון",steps:["החליקו את האצבע מהחלק העליון ביותר של המסך כלפי מטה כדי לפתוח את וילון ההגדרות המהירות (שימו לב: הווילון נפתח תמיד בגרירה ישירה מלמעלה למטה, ולא באמצעות לחיצה על שלוש נקודות).","📶 Wi-Fi (גלים או פסים) — פסים מלאים = מחוברים לאינטרנט. פסים חצויים או ✕ = אין חיבור. חיצים 5G/4G = רשת סלולרית.","🔋 סוללה — ירוק = תקין. כתום = מתחת ל-30%. אדום = מתחת ל-10%, טעינה דחופה! ⚡ ברק = הטלפון בטעינה.","🔕 פעמון עם קו = מצב שקט. 🌙 ירח = נא לא להפריע. ✈️ מטוס = מצב טיסה, ללא קליטה כלל."]},
+        {id:"wa-1",category:"whatsapp",title:"איך שולחים מיקום נוכחי ובזמן אמת (מעקב)?",steps:["ודאו שרכיב המיקום (GPS) מופעל בטלפון שלכם (דרך וילון ההגדרות העליון שנפתח בגרירה מטה).","היכנסו לשיחה של האדם שברצונכם לשלוח לו את המיקום בוואטסאפ.","לחצו על סמל הסיכה (📎) או סמל הפלוס (+) שליד שורת כתיבת ההודעה.","בחרו באפשרות 'מיקום' (סמל של סיכה עגולה על גבי מפה).","לשליחת נקודה קבועה ברגע זה: לחצו על 'שלח את מיקומך הנוכחי' (האדם השני יראה בדיוק היכן הייתם כששלחתם והסימון לא ישתנה גם אם תזוזו).","לשיתוף בזמן אמת (מעקב בתנועה): לחצו על 'שתף מיקום בזמן אמת', בחרו את משך הזמן (למשל: שעה אחת) ולחצו על חץ השליחה. המיקום שלכם יתעדכן על המפה של האחר גם כשאתם זזים!"]},
         {id:"zm-1",category:"zoom",title:"כפתור 'הרם יד' (Raise Hand) - מתי ואיך להשתמש? ✋",steps:["בזמן השיחה, לחצו על כפתור Reactions (סמל של סמיילי מחייך עם פלוס) בתחתית המסך.","בתפריט הקטן שייפתח, לחצו על כפתור Raise Hand.","המנחה או המרצה יראו מיד אייקון של יד מורמת לצד השם שלכם וידעו שאתם מבקשים את רשות הדיבור.","זה שומר על סדר המפגש ומבטיח שלא יפספסו את התור שלכם לבטא את דעתכם!"]},
-        {id:"zm-2",category:"zoom",title:"איך מקליטים את מפגש הזום למחשב?",steps:["ודאו מראש עם מארח הפגישה (Host) שהוא מאשר ומאפשר לכם להקליט.","במהלך הפגישה, חפשו בתפריט התחתון כפתור בשם Record (סמל של עיגול).","לחצו עליו כדי להתחיל את ההקלטה. תוכלו לעצור אותה בכל שלב באותו המקום.","עם סיום השיחה ויציאה מהחדר, קובץ הווידאו יישמר אוטומטית בתיקייה ייעודית במחשב שלכם לצפייה חוזרת."]},
+        {id:"zm-2",category:"zoom",title:"איך מקליטים את מפגש הזום למחשב?",steps:["ודאו מראש עם מארח הפגישה (Host) שהוא מאשר ומאפשר לכם להקליט.","במהלע המפגש, חפשו בתפריט התחתון כפתור בשם Record (סמל של עיגול).","לחצו עליו כדי להתחיל את ההקלטה. תוכלו לעצור אותה בכל שלב באותו המקום.","עם סיום השיחה ויציאה מהחדר, קובץ הווידאו יישמר אוטומטית בתיקייה ייעודית במחשב שלכם לצפייה חוזרת."]},
         {id:"zm-3",category:"zoom",title:"בדיקת שמע ומיקרופון לפני כניסה למפגש 🎧",steps:["למניעת תקלות שמע מביכות, בצעו את הבדיקה לפני ההתחברות הרשמית.","רגע לפני הכניסה לשיחה, זום יציע לכם כפתור בשם Test Speaker & Microphone. לחצו עליו.","המחשב ישמיע לכם צליל בדיקה וישאל אם שמעתם אותו. לאחר מכן הוא יבקש מכם לדבר קצרות כדי להקליט את עצמכם ולהשמיע לכם את החזרה.","כך מוודאים שהרמקולים והמיקרופון מכוונים ועובדים בצורה מעולה ותקינה."]},
         {id:"lnk-1",category:"links",title:"מספרי חירום לחיוג מהיר",steps:["משטרת ישראל — מוקד 100","מגן דוד אדום — מוקד 101","לוחמי האש (כיבוי והצלה) — מוקד 102","פיקוד העורף — מוקד 104"]}
     ];
@@ -77,9 +77,9 @@
         };
 
         return (
-            <div className="max-w-md mx-auto min-h-screen flex flex-col pb-20 select-none">
-                <div className="sticky top-0 z-50 shadow-md">
-                    <header className="bg-gradient-to-r from-emerald-600 to-teal-700 text-white p-5 pt-7 rounded-b-3xl">
+            <div className="w-full max-w-md mx-auto min-h-screen flex flex-col pb-20 select-none bg-[#F0FAF5]">
+                <div className="sticky top-0 z-50 w-full shadow-md">
+                    <header className="bg-gradient-to-r from-emerald-600 to-teal-700 text-white p-5 pt-7 rounded-b-3xl w-full">
                         <div className="flex justify-between items-center mb-4">
                             <h1 className="text-2xl font-extrabold tracking-tight">פשוט וקל 📱</h1>
                             <p className="text-sm opacity-90 font-semibold bg-emerald-800/40 px-3 py-1 rounded-full">מדריך כיס</p>
@@ -88,7 +88,7 @@
                             <input 
                                 type="text" 
                                 placeholder="חפשו מדריך או פעולה..." 
-                                className="w-full p-3.5 pr-11 rounded-2xl text-slate-800 bg-white/95 focus:outline-none text-base font-medium"
+                                className="w-full p-3.5 pr-11 rounded-2xl text-slate-800 bg-white/95 focus:outline-none text-base font-medium placeholder-slate-400"
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
                             />
@@ -96,7 +96,7 @@
                         </div>
                     </header>
 
-                    <div className="p-3 overflow-x-auto no-scrollbar flex gap-2.5 bg-white border-b border-slate-100">
+                    <div className="p-3 overflow-x-auto no-scrollbar flex gap-2.5 bg-white border-b border-slate-100 justify-start">
                         {CATS.map((cat) => {
                             const isSelected = activeTab === cat.key;
                             return (
@@ -115,9 +115,9 @@
                     </div>
                 </div>
 
-                <main className="flex-1 p-4">
+                <main className="flex-1 p-4 w-full">
                     {selectedGuide ? (
-                        <div className="bg-white rounded-3xl p-5 shadow-sm border border-slate-100 step-fade">
+                        <div className="bg-white rounded-3xl p-5 shadow-sm border border-slate-100 step-fade w-full">
                             <div className="flex justify-between items-center mb-6">
                                 <button onClick={() => { setSelectedGuide(null); setCopied(false); }} className="text-emerald-600 font-bold text-sm btn-3d-header px-3 py-1.5 bg-emerald-50 rounded-xl">🏃‍♂️ חזרה</button>
                                 <button onClick={() => handleCopyGuide(selectedGuide)} className={`font-bold text-sm btn-3d-header px-3 py-1.5 rounded-xl ${copied ? "bg-teal-600 text-white" : "bg-slate-100 text-slate-700"}`}>{copied ? "✅ הועתק!" : "📋 העתקת המדריך"}</button>
@@ -133,7 +133,7 @@
                             </div>
                         </div>
                     ) : (
-                        <div className="space-y-3">
+                        <div className="space-y-3 w-full">
                             {filteredGuides.length > 0 ? (
                                 filteredGuides.map((guide) => (
                                     <button key={guide.id} onClick={() => setSelectedGuide(guide)} className="w-full text-right p-4 bg-white rounded-2xl shadow-sm border border-slate-100 hover:border-slate-200 transition-all active:bg-slate-50/80 flex justify-between items-center btn-3d border-b-slate-300">
@@ -142,14 +142,14 @@
                                     </button>
                                 ))
                             ) : (
-                                <div className="text-center py-12 bg-white rounded-3xl border border-slate-100 p-6">
+                                <div className="text-center py-12 bg-white rounded-3xl border border-slate-100 p-6 w-full">
                                     <p className="text-slate-400 text-lg font-bold mb-1">לא מצאנו מדריך מתאים</p>
                                 </div>
                             )}
                         </div>
                     )}
                 </main>
-                <footer className="text-center text-slate-400 text-xs p-4 mt-auto">פשוט וקל - מוגש באהבה ❤️</footer>
+                <footer className="text-center text-slate-400 text-xs p-4 mt-auto w-full">פשוט וקל - מוגש באהבה ❤️</footer>
             </div>
         );
     }
