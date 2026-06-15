@@ -1,3 +1,153 @@
-<footer className="text-center text-slate-400 text-xs p-4 mt-auto">
-    פשוט וקל - מוגש באהבה ❤️
-</footer>
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>פשוט וקל - מדריך כיס דיגיטלי</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.5/babel.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght=300;400;600;700;800&display=swap" rel="stylesheet">
+    <script src="guides.js"></script>
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: 'Assistant', sans-serif; background: #F0FAF5; -webkit-tap-highlight-color: transparent; margin: 0; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .step-fade { animation: fadeIn 0.2s ease; }
+        @keyframes fadeIn { from { opacity:0; transform:translateY(5px); } to { opacity:1; transform:translateY(0); } }
+        .btn-3d { border-bottom-width: 4px !important; transition: transform 0.08s ease, border-bottom-width 0.08s ease; }
+        .btn-3d:active { transform: translateY(3px); border-bottom-width: 1px !important; }
+        .btn-3d-header { border-bottom: 3px solid rgba(0,0,0,0.25) !important; transition: transform 0.08s ease, border-bottom-width 0.08s ease; }
+        .btn-3d-header:active { transform: translateY(2px); border-bottom-width: 0px !important; margin-top: 2px; }
+    </style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+    const { useState, useMemo } = React;
+
+    // Premium Crisp SVG Icons mapping inside app
+    const ICONS = {
+        basics: () => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-6 h-6 text-indigo-600"><rect x="5" y="2" width="14" height="20" rx="2" ry="2" /><line x1="12" y1="18" x2="12.01" y2="18" strokeWidth="3" /></svg>,
+        whatsapp: () => <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6"><path d="M12 2C6.48 2 2 6.48 2 12c0 2.17.63 4.19 1.73 5.89L2.1 21.9l4.13-1.57C7.86 21.39 9.85 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2z" fill="#128C7E"/><path d="M16.5 13.75c-.25-.13-1.5-.74-1.73-.83-.23-.08-.39-.13-.56.13-.16.25-.64.83-.79.99-.15.16-.3.18-.55.05a6.97 6.97 0 0 1-2.04-1.26 7.64 7.64 0 0 1-1.41-1.75c-.15-.25-.02-.39.11-.51.12-.11.25-.29.38-.44.13-.15.17-.25.26-.41.09-.16.05-.3-.02-.44-.06-.13-.56-1.35-.77-1.83-.2-.5-.41-.43-.56-.43h-.48c-.16 0-.43.06-.66.31-.22.25-.85.83-.85 2.03s.87 2.35.99 2.51c.12.16 1.7 2.6 4.12 3.65.58.25 1.03.4 1.38.51.58.18 1.11.16 1.53.1.47-.07 1.5-.61 1.71-1.2.21-.59.21-.11-.22-.18-.47-.31z" fill="white"/></svg>,
+        android: () => <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 text-[#A4C639]"><path d="M12 2a5 5 0 0 0-5 5v1h10V7a5 5 0 0 0-5-5zM5 9h2v8H5zm12 0h2v8h-2zM8 10h8v8a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2zm1.5-4a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5zm5 0a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5z"/></svg>,
+        iphone: () => <svg viewBox="0 0 24 24" fill="currentColor" className="w-7 h-7 text-slate-700"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 2.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42.93-.38-.21zM15.97 4.17c.66-.81 1.11-1.93.99-3.06-1 .04-2.21.67-2.93 1.49-.62.69-1.16 1.84-1.01 2.96 1.12.09 2.27-.58 2.95-1.39z"/></svg>,
+        gmail: () => <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6"><rect x="2" y="4" width="20" height="16" rx="3" fill="#E8EAED"/><path d="M22 6l-10 7L2 6" stroke="#EA4335" strokeWidth="2.5"/><path d="M2 6v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6" stroke="#4285F4" strokeWidth="2"/></svg>,
+        camera: () => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-6 h-6 text-amber-600"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>,
+        nav: () => <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="#4285F4"/><circle cx="12" cy="9" r="3" fill="white"/></svg>,
+        zoom: () => <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6"><rect x="2" y="4" width="20" height="16" rx="4" fill="#2D8CFF" /><path d="M6 9h6v6H6z" fill="white"/><path d="M14 10.5l4-3v9l-4-3z" fill="white" stroke="white" strokeWidth="1"/></svg>,
+        ai: () => <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 text-purple-600"><path d="M12 2l1.9 4.9 4.9 1.9-4.9 1.9-1.9 4.9-1.9-4.9-4.9-1.9 4.9-1.9zM19 13l1 2.5 2.5 1-2.5 1-1 2.5-1-2.5-2.5-1 2.5-1z" /></svg>,
+        links: () => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-6 h-6 text-teal-600"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" /></svg>
+    };
+
+    function App() {
+        const [activeTab, setActiveTab] = useState("basics");
+        const [selectedGuide, setSelectedGuide] = useState(null);
+        const [searchQuery, setSearchQuery] = useState("");
+        const [copied, setCopied] = useState(false);
+
+        // Filter mechanism fetching directly from loaded guides.js
+        const filteredGuides = useMemo(() => {
+            return guidesData.filter(guide => {
+                const matchesTab = guide.category === activeTab;
+                const matchesSearch = guide.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                                      guide.steps.some(step => step.toLowerCase().includes(searchQuery.toLowerCase()));
+                return matchesTab && (searchQuery === "" || matchesSearch);
+            });
+        }, [activeTab, searchQuery]);
+
+        const handleCopyGuide = (guide) => {
+            if (!guide) return;
+            const stepsText = guide.steps.map((step, idx) => `${idx + 1}. ${step}`).join("\n");
+            const fullTextToCopy = `*${guide.title}*\n\n${stepsText}`;
+            navigator.clipboard.writeText(fullTextToCopy).then(() => {
+                setCopied(true);
+                setTimeout(() => setCopied(false), 2000);
+            });
+        };
+
+        return (
+            <div className="max-w-md mx-auto min-h-screen flex flex-col pb-20 select-none">
+                <div className="sticky top-0 z-50 shadow-md">
+                    <header className="bg-gradient-to-r from-emerald-600 to-teal-700 text-white p-5 pt-7 rounded-b-3xl">
+                        <div className="flex justify-between items-center mb-4">
+                            <h1 className="text-2xl font-extrabold tracking-tight">פשוט וקל 📱</h1>
+                            <p className="text-sm opacity-90 font-semibold bg-emerald-800/40 px-3 py-1 rounded-full">מדריך כיס</p>
+                        </div>
+                        <div className="relative">
+                            <input 
+                                type="text" 
+                                placeholder="חפשו מדריך או פעולה..." 
+                                className="w-full p-3.5 pr-11 rounded-2xl text-slate-800 bg-white/95 focus:outline-none text-base font-medium"
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                            />
+                            <span className="absolute right-4 top-4 text-slate-400">🔍</span>
+                        </div>
+                    </header>
+
+                    <div className="p-3 overflow-x-auto no-scrollbar flex gap-2.5 bg-white border-b border-slate-100">
+                        {CATS.map((cat) => {
+                            const isSelected = activeTab === cat.key;
+                            return (
+                                <button
+                                    key={cat.key}
+                                    onClick={() => { setActiveTab(cat.key); setSelectedGuide(null); }}
+                                    className={`flex items-center gap-2 px-4 py-2.5 rounded-xl font-bold text-sm whitespace-nowrap border-b-[3px] transition-all ${
+                                        isSelected ? "bg-slate-100 border-slate-800 text-slate-900 shadow-sm scale-102" : "bg-slate-50/60 border-transparent text-slate-500"
+                                    }`}
+                                >
+                                    {ICONS[cat.key] ? ICONS[cat.key]() : null}
+                                    {cat.label}
+                                </button>
+                            );
+                        })}
+                    </div>
+                </div>
+
+                <main className="flex-1 p-4">
+                    {selectedGuide ? (
+                        <div className="bg-white rounded-3xl p-5 shadow-sm border border-slate-100 step-fade">
+                            <div className="flex justify-between items-center mb-6">
+                                <button onClick={() => { setSelectedGuide(null); setCopied(false); }} className="text-emerald-600 font-bold text-sm btn-3d-header px-3 py-1.5 bg-emerald-50 rounded-xl">🏃‍♂️ חזרה</button>
+                                <button onClick={() => handleCopyGuide(selectedGuide)} className={`font-bold text-sm btn-3d-header px-3 py-1.5 rounded-xl ${copied ? "bg-teal-600 text-white" : "bg-slate-100 text-slate-700"}`}>{copied ? "✅ הועתק!" : "📋 העתקת המדריך"}</button>
+                            </div>
+                            <h2 className="text-xl font-extrabold text-slate-800 mb-5 border-b pb-3 border-slate-100">{selectedGuide.title}</h2>
+                            <div className="space-y-4">
+                                {selectedGuide.steps.map((step, idx) => (
+                                    <div key={idx} className="flex gap-3 items-start bg-slate-50/60 p-4 rounded-2xl border border-slate-100">
+                                        <span className="flex items-center justify-center bg-emerald-600 text-white font-extrabold text-sm w-6 h-6 rounded-full shrink-0 mt-0.5 shadow-sm">{idx + 1}</span>
+                                        <p className="text-slate-700 leading-relaxed font-medium text-base">{step}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    ) : (
+                        <div className="space-y-3">
+                            {filteredGuides.length > 0 ? (
+                                filteredGuides.map((guide) => (
+                                    <button key={guide.id} onClick={() => setSelectedGuide(guide)} className="w-full text-right p-4 bg-white rounded-2xl shadow-sm border border-slate-100 hover:border-slate-200 transition-all active:bg-slate-50/80 flex justify-between items-center btn-3d border-b-slate-300">
+                                        <span className="font-bold text-slate-800 text-base pl-2">{guide.title}</span>
+                                        <span className="text-slate-300 text-xl font-light shrink-0">◀</span>
+                                    </button>
+                                ))
+                            ) : (
+                                <div className="text-center py-12 bg-white rounded-3xl border border-slate-100 p-6">
+                                    <p className="text-slate-400 text-lg font-bold mb-1">לא מצאנו מדריך מתאים</p>
+                                </div>
+                            )}
+                        </div>
+                    )}
+                </main>
+                <footer className="text-center text-slate-400 text-xs p-4 mt-auto">פשוט וקל - מוגש באהבה ❤️</footer>
+            </div>
+        );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+</script>
+</body>
+</html>
